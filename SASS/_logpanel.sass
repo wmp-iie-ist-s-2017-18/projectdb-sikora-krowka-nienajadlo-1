@@ -1,0 +1,117 @@
+
+.logLogo
+    margin-left: 100px
+    width: 35px
+    
+.logNav
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 2
+
+
+    & .logRight 
+        position: absolute
+        right: 0
+
+    .logRight:last-child
+         margin-right: 15px
+
+    & input 
+        margin: 0 5px
+
+
+@media screen and (max-width: 660px) 
+    .logLogoDesc
+        display: none
+
+    .logLogo
+        margin-left: 10px    
+    
+#logForm
+    display: none
+    
+.logButton
+    margin: 0 5px
+
+#logLoader
+    display: none
+
+#signUp
+     margin-right: 6vw
+
+
+.buttonHide 
+    display: none
+
+
+.carousel-inner img 
+    height: 100vh
+    width: 100%
+    object-fit: cover
+    user-select: none
+    // can't select any text
+
+.logCarouselDesc
+    background-color: rgba(0, 0, 0, 0.5)
+    color: #fff
+    -moz-user-select: none
+
+
+#joinUs
+    position: absolute
+    width: 300px
+    height: 100px
+    right: 50%
+    top: calc(50vh - 50px)
+    transform: translate(50%, -50%)
+    background-color: rgba(2, 102, 95, 0.7)
+    border-radius: 10px
+    transition: .3s
+    color: white
+
+    &:hover 
+        cursor: pointer
+        background-color: rgba(2, 102, 95, 0.9)
+        transform: translate(50%, -50%) scale(1.2)
+
+    & p 
+        line-height: 100px
+        font-size: 30px
+        text-align: center
+        user-select: none
+         // can't select any text
+
+@media screen and (max-width: 600px) and (orientation: landscape)
+    #joinUs
+        height: 60px
+
+        & p 
+            line-height: 60px
+        
+
+#logCarousel
+    position: relative
+
+    & div button 
+        float: right
+
+.logRegisterTitle
+    width: 100%
+
+.displayForm 
+    display: none
+
+#submit_log 
+    margin-right: 100px
+
+#logWrapper
+    transition: .5s
+
+.forgetPass
+    display: block
+    text-align: right
+    color: SteelBlue 
+
+        

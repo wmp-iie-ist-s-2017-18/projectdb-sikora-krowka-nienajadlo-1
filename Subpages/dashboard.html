@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Project Manager - Manage Your Projects!</title>
+
+    <!-- meta section -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- link section -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../IMG/vs.png" />
+
+    <!-- scripts section -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <!-- dashboard navigation -->
+    <!-- A grey horizontal navbar that becomes vertical on small screens -->
+    <nav class="dashNav navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img class="logLogo" src="../img/vs.png" alt="Logo">
+            <span class="logLogoDesc">Project Manager</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="userPanel navbar-nav ml-auto nav" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#dashboardHome">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#dashboardProjects">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#dashboardTeam">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#dashboardSettings">Settings</a>
+                </li>
+                <li id="dashSearchBox" class="nav-item">
+                    <form class="form-inline d-none d-sm-none d-xs-none d-md-none d-lg-block d-xl-block" action="#">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+                        </span>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+
+
+
+    <!-- dashboard main -->
+    <main id="dashboardMain">
+        <div class="tab-content">
+            <div id="dashboardHome" class="container tab-pane active">
+                Dashboard
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum quam blanditiis ab odio facere odit
+                perferendis laudantium, alias ullam nulla? Ad eaque architecto, expedita soluta quo, voluptatum natus
+                non quis aliquid, quos reiciendis laboriosam dolore illum hic? Id illum minima mollitia eius tempore
+                labore commodi temporibus nesciunt? Amet laboriosam, pariatur iste animi, id dolore nobis modi
+                exercitationem repudiandae vel veritatis at beatae alias enim atque sint, aut culpa explicabo quam qui
+                eligendi totam! Doloremque libero nobis ducimus nulla, dignissimos, odit est in possimus, voluptates
+                iure corporis at consequuntur earum. Quis iste nisi eum id, optio quaerat? Natus impedit laboriosam
+                aspernatur?
+
+            </div>
+            <div id="dashboardProjects" class="container tab-pane fade">
+                Projects
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, totam officia! Ducimus, veritatis
+                iure. Culpa voluptates ab nemo in similique illo nesciunt amet vitae omnis vero eius maiores pariatur
+                minima soluta, debitis tenetur! Tempora ipsa enim quas excepturi veniam neque libero facilis non culpa.
+                Dolorum aspernatur omnis iste facere hic itaque ad voluptate minus rerum, debitis voluptas voluptatem
+                soluta natus facilis, repellat nisi repudiandae dignissimos praesentium. Cupiditate maiores ea sapiente
+                possimus placeat quibusdam fugit at quae natus nemo assumenda asperiores rerum nam rem consequatur
+                nesciunt, earum autem odit deleniti architecto dicta aliquam. Odio perferendis explicabo, fuga modi,
+                voluptate, rem accusamus consequatur accusantium delectus nam exercitationem? Reiciendis porro mollitia
+                autem inventore sapiente incidunt suscipit commodi ullam unde vero repellat a illum molestiae fuga vitae
+                saepe, veniam facilis quia, nesciunt dicta deserunt. Hic non, eligendi labore inventore impedit cumque
+                quidem, animi enim, explicabo ut voluptas! Excepturi nulla molestiae corrupti reiciendis, harum
+                repudiandae aspernatur ex, placeat distinctio dolorum amet dolor quam neque consequuntur ab a doloremque
+                repellendus illo, autem alias eos. Eum perspiciatis autem ea temporibus officia recusandae nemo error,
+                possimus dolorum beatae, eius, cumque nisi perferendis voluptatibus architecto ut laboriosam vel!
+                Aliquam, perspiciatis soluta deserunt tempora optio omnis dolorum sapiente neque rem?
+            </div>
+            <div id="dashboardTeam" class="container tab-pane fade">
+                Teams
+            </div>
+            <div id="dashboardSettings" class="container tab-pane fade">
+                Settings
+            </div>
+        </div>
+    </main>
+
+    <!-- dashboard footer -->
+    <footer class="dashboardFooter">
+        <p>Project Manager - All rights reserved &copy;</p>
+    </footer>
+</body>
+
+</html>
