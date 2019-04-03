@@ -1,27 +1,40 @@
-<meta charset="UTF-8">
 <?php
 
-require_once "connection.php";
+include 'connection.php';
 
+// form variables initialization and declaration
+    $log_email = $_POST["logEmail"];
+    $log_password = $_POST["logPassword"];
+
+// try to connect with database
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dbh = new PDO('mysql:host=localhost;dbname=projectmanager', $db_user, $db_password);
+    $connection_status = true;
+    print("Connection estabilished");
+} 
 
-    $email = $_REQUEST['logEmail'];
-    $password = $_REQUEST['logPassword'];
+// exception
+catch (PDOException $e) {
+    print("Error!: " . $e->getMessage() . "<br/>");
+    $connection_status = false;
+    die();
+}
 
-    $stmt = $conn->prepare("SELECT Employee_ID FROM employee WHERE email = '$email'"); 
-    $stmt->execute();
-    $result = $stmt->fech();
-    echo $result["Employee_ID"];
+if($connection_status){
+    try{
+        // database prepared statements
+        $logIn = $dbh->prepare("SELECT * FROM Employee WHERE email = :log_email AND password = :log_password");
+        $logIn->bindParam(':log_email', $log_email);
+        $logIn->bindParam(':log_password', $log_password);
+        $logIn->execute();
+        print("<br> Query executed!");
+        print("<br> $log_email");
+        print("<br> $log_password");
+        header("Location: dashboard.php");
     }
-    
-catch(PDOException $e)
-    {
-        
-    echo "Connection failed: " . $e->getMessage();
+    catch(PDOException $e){
+        print("Can't execute this query!");
     }
-    // header("Location:../index.html");
-    
+}
+
 ?>
