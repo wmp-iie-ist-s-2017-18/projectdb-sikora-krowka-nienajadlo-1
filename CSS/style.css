@@ -1,10 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
-
 * {
   padding: 0;
   margin: 0;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html {
@@ -14,7 +13,7 @@ html {
 
 .blur {
   -webkit-filter: blur(6px);
-  filter: blur(6px);
+          filter: blur(6px);
 }
 
 .center-text {
@@ -32,7 +31,6 @@ html {
   left: 0;
   right: 0;
   z-index: 2;
-  height: 9vh;
 }
 
 .logNav .logRight {
@@ -52,7 +50,6 @@ html {
   .logLogoDesc {
     display: none;
   }
-
   .logLogo {
     margin-left: 10px;
   }
@@ -82,11 +79,11 @@ html {
   height: 100vh;
   width: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .logCarouselDesc {
@@ -102,7 +99,7 @@ html {
   right: 50%;
   top: calc(50vh - 50px);
   -webkit-transform: translate(50%, -50%);
-  transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
   background-color: rgba(2, 102, 95, 0.7);
   border-radius: 10px;
   -webkit-transition: .3s;
@@ -114,7 +111,7 @@ html {
   cursor: pointer;
   background-color: rgba(2, 102, 95, 0.9);
   -webkit-transform: translate(50%, -50%) scale(1.2);
-  transform: translate(50%, -50%) scale(1.2);
+          transform: translate(50%, -50%) scale(1.2);
 }
 
 #joinUs p {
@@ -122,16 +119,15 @@ html {
   font-size: 30px;
   text-align: center;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 @media screen and (max-width: 600px) and (orientation: landscape) {
   #joinUs {
     height: 60px;
   }
-
   #joinUs p {
     line-height: 60px;
   }
@@ -169,12 +165,30 @@ html {
 }
 
 .dashNav {
-  height: 9vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .dashNav .userPanel li {
   text-align: center;
   padding: 0 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.dashNav .userPanel a {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 @media (min-width: 991px) and (max-width: 1080px) {
@@ -184,7 +198,8 @@ html {
 }
 
 #dashboardMain {
-  height: 87vh;
+  min-height: 96vh;
+  padding: 10vh 0;
   background-color: #E9ECEF;
 }
 
@@ -192,16 +207,12 @@ html {
   text-align: center;
   margin-top: 7vh;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .dashboardFooter {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   height: 4vh;
   background-color: #343A40;
   color: white;
@@ -212,9 +223,8 @@ html {
 .dashboardFooter p {
   margin: 0;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
-
 /*# sourceMappingURL=style.css.map */
