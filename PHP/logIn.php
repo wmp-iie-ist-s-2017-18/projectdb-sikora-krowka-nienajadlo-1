@@ -28,8 +28,6 @@ if($connection_status){
         $logIn->bindParam(':log_password', $log_password);
         $logIn->execute();
         print("<br> Query executed!");
-        print("<br> $log_email");
-        print("<br> $log_password");
         header("Location: dashboard.php");
     }
     catch(PDOException $e){
