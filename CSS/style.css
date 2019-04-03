@@ -11,6 +11,10 @@ html {
   height: 100%;
 }
 
+body {
+  background-color: #E9ECEF;
+}
+
 .blur {
   -webkit-filter: blur(6px);
           filter: blur(6px);
@@ -18,6 +22,11 @@ html {
 
 .center-text {
   text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 
 .logLogo {
@@ -164,6 +173,36 @@ html {
   color: SteelBlue;
 }
 
+#logSignInButton {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#logSignInButton:hover #logSubmit {
+  background-color: #0069D9;
+}
+
+#logSignInButton a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+#logSubmit {
+  width: 100%;
+  height: 100%;
+  background-color: #007bff;
+  outline: none;
+  border: none;
+  color: white;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.dashWrapper {
+  position: relative;
+  min-height: 100%;
+}
+
 .dashNav {
   position: fixed;
   top: 0;
@@ -178,17 +217,6 @@ html {
 .dashNav .userPanel li {
   text-align: center;
   padding: 0 20px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.dashNav .userPanel a {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
 
 @media (min-width: 991px) and (max-width: 1080px) {
@@ -197,27 +225,38 @@ html {
   }
 }
 
-#dashboardMain {
-  min-height: 96vh;
-  padding: 10vh 0;
-  background-color: #E9ECEF;
+@media screen and (max-width: 750px) {
+  .dashboardTitle .container .display-4 {
+    font-size: 1.5rem;
+    padding-top: 5vh;
+  }
+  .dashboardTitle .container .display-4 ~ p {
+    font-size: 0.8rem;
+  }
 }
 
 #dashboardMain .dashboardTitle {
   text-align: center;
-  margin-top: 7vh;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  margin-top: 3vh;
 }
 
 .dashboardFooter {
-  height: 4vh;
+  padding: 5px 0;
+  clear: both;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 4vh;
   background-color: #343A40;
   color: white;
   line-height: 4vh;
   text-align: center;
+  z-index: -1;
 }
 
 .dashboardFooter p {
