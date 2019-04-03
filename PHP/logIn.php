@@ -2,7 +2,7 @@
 
 include 'connection.php';
 
-// form vaiables initialization and declaration
+// form variables initialization and declaration
     $log_email = $_POST["logEmail"];
     $log_password = $_POST["logPassword"];
 
