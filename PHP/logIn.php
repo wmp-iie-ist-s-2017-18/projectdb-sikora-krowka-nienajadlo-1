@@ -1,9 +1,7 @@
 <meta charset="UTF-8">
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ProjectMeneger3";
+
+require_once "connection.php";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
