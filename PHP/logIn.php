@@ -28,7 +28,7 @@ if($connection_status){
         $logIn->bindParam(':log_password', $log_password);
         $logIn->execute();
         print("<br> Query executed!");
-        header("Location: dashboard.php");
+        header("Location: dashboard.html");
     }
     catch(PDOException $e){
         print("Can't execute this query!");
