@@ -1,24 +1,29 @@
 
 .dashNav
-    // position: fixed
-    // top: 0
-    // left: 0
-    // right: 0
-    // user-select: none
-    height: 9vh
-
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    user-select: none
+    // height: 9vh
+    
     & .userPanel
         
         & li
             text-align: center
-            padding: 0 20px 
+            padding: 0 20px
+            user-select: none
+        a 
+            user-select: none // nie działa
+
 
 @media (min-width: 991px) and (max-width: 1080px)
     #dashSearchBox
         display: none
 
 #dashboardMain
-    height: 87vh
+    min-height: 96vh
+    padding: 10vh 0
     background-color: #E9ECEF
 
     & .dashboardTitle
@@ -27,10 +32,10 @@
         user-select: none
 
 .dashboardFooter
-    position: absolute
-    bottom: 0
-    left: 0
-    right: 0
+    // position: absolute
+    // bottom: 0
+    // left: 0
+    // right: 0
     height: 4vh
     background-color: #343A40
     color: white
