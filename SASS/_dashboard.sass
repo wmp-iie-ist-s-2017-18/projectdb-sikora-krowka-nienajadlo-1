@@ -1,46 +1,60 @@
 
+.dashWrapper
+    position: relative
+    min-height: 100%
+
 .dashNav
     position: fixed
     top: 0
     left: 0
     right: 0
     user-select: none
-    // height: 9vh
-    
+
     & .userPanel
         
         & li
             text-align: center
-            padding: 0 20px
-            user-select: none
-        a 
-            user-select: none // nie działa
-
+            padding: 0 20px 
 
 @media (min-width: 991px) and (max-width: 1080px)
     #dashSearchBox
         display: none
 
+@media (max-width: 700px)
+    .dashboardTitle
+        
+@media screen and (max-width: 750px)    
+    .dashboardTitle .container .display-4
+        font-size: 1.5rem
+        padding-top: 5vh
+        
+        ~ p
+            font-size: 0.8rem
+
+
+
 #dashboardMain
-    min-height: 96vh
-    padding: 10vh 0
-    background-color: #E9ECEF
+    
 
     & .dashboardTitle
         text-align: center
-        margin-top: 7vh
         user-select: none
+        margin-top: 3vh
 
 .dashboardFooter
-    // position: absolute
-    // bottom: 0
-    // left: 0
-    // right: 0
-    height: 4vh
+    padding: 5px 0
+    clear: both
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    min-height: 4vh
     background-color: #343A40
     color: white
     line-height: 4vh
     text-align: center
+    z-index: -1
+
 
     & p
         margin: 0
