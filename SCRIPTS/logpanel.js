@@ -68,15 +68,5 @@ $(document).ready(function () {
         }
     });
 
-    $("#logSignInButton").click(function () {
-        if ($("#logEmail").val() == "admin@admin.com" && $("#logPassword").val() == "admin") {
-            $("#logLoader").fadeIn(300).css("color", "green");
-            setTimeout(function () {
-                window.open("Subpages/dashboard.html", "_self");
-            }, 2000);
-        }
-    });
-
-
 
 });
