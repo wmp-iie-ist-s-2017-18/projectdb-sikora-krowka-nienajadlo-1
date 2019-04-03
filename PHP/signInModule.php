@@ -30,7 +30,7 @@ if($connection_status){
         print("<br> Query executed!");
         print("<br> $log_email");
         print("<br> $log_password");
-        header("Location: dashboard.php");
+        header("Location: JSON_logCreator.php");
     }
     catch(PDOException $e){
         print("Can't execute this query!");
