@@ -8,7 +8,7 @@ include 'connection.php';
 
 // try to connect with database
 try {
-    $dbh = new PDO('mysql:host=localhost;dbname=projectmanager', $db_user, $db_password);
+    $dbh = new PDO($db_dsn, $db_username, $db_password);
     $connection_status = true;
     print("Connection estabilished");
 } 
@@ -28,7 +28,17 @@ if($connection_status){
         $logIn->bindParam(':log_password', $log_password);
         $logIn->execute();
         print("<br> Query executed!");
-        header("Location: dashboard.html");
+
+        $count = $logIn->rowCount();
+
+        if($count == 1){
+            header("Location: ../SUBPAGES/dashboard.html?succes=1");
+        }
+
+        else{
+            header("Location: ../index.html?success=0");
+        }
+        
     }
     catch(PDOException $e){
         print("Can't execute this query!");
