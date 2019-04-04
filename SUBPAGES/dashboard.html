@@ -50,7 +50,7 @@
                     <a class="nav-link" data-toggle="tab" href="#dashboardSettings">Settings</a>
                 </li>
                 <li class="nav-item" id="adminSQL">
-                    <a class="nav-link" data-toggle="tab" href="#dashboardSQL">SQL</a>
+                    <a class="nav-link" id="adminHrefSQL" data-toggle="tab" href="#dashboardSQL">SQL</a>
                 </li>
                 <li id="dashSearchBox" class="nav-item">
                     <form class="form-inline d-none d-sm-none d-xs-none d-md-none d-lg-block d-xl-block" action="#">
@@ -113,7 +113,8 @@
                 <form action="../PHP/adminSQL.php" method="get">
                     <div class="form-group">
                         <label for="SQLComandLine">SQL Commad line:</label>
-                        <textarea type="text" class="form-control" rows="5" name="SQLComandLine"></textarea>
+                        <textarea type="text" class="form-control" rows="5" id="SQLComandLine"
+                            name="SQLComandLine"></textarea>
                         <!-- <input type="text" class="form-control" name="SQLComandLine" placeholder="Enter username"> -->
                     </div>
                     <button type="submit" class="btn btn-primary">Ready</button>
@@ -127,6 +128,21 @@
     <footer class="dashboardFooter">
         <p>Project Manager - All rights reserved &copy;</p>
     </footer>
+
+    <script>
+        var url = $(location).attr('href');
+        const sql_query = "sql=1";
+        const sql_query_error = "sql=0";
+
+        if (url.indexOf(sql_query) >= 1) {
+            $("#adminHrefSQL").click();
+        }
+        if (url.indexOf(sql_query_error) >= 1) {
+            $("#adminHrefSQL").click();
+            $("#SQLComandLine").css("border", "1px dashed red");
+        }
+    </script>
+
 </body>
 
 </html>
