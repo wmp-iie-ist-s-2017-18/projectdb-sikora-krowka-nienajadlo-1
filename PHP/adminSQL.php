@@ -27,7 +27,7 @@ if($connection_status){
         $logIn->execute();
         print("<br> Query executed!");
 
-        // header("Location: ../SUBPAGES/dashboard.html");
+        header("Location: ../SUBPAGES/dashboard.html");
     }
     catch(PDOException $e){
     var_dump($e->getMessage());

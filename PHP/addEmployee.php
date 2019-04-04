@@ -13,7 +13,7 @@ try {
     $email = $_REQUEST['regEmail'];
     $login = $_REQUEST['regLogin'];
     $password = $_REQUEST['regPass'];
-    $stmt = $conn->prepare('INSERT INTO public.employee ("Employee_ID" , "Email" , "Login" , "Password" )'." VALUES (1 ,'$email' ,'$login', '$password')"); 
+    $stmt = $conn->prepare('INSERT INTO public.employee ("Employee_ID" , "Email" , "Login" , "Password" )'." VALUES (4 ,'$email' ,'$login', '$password')"); 
     $stmt->execute();
     }
     
