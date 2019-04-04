@@ -204,6 +204,10 @@ a {
 }
 
 .dashNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -240,6 +244,10 @@ a {
   .dashboardTitle .container .display-4 ~ p {
     font-size: 0.8rem;
   }
+}
+
+#dashboardMain {
+  padding: 10vh 0;
 }
 
 #dashboardMain .dashboardTitle {
