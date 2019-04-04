@@ -110,10 +110,15 @@
                 Settings
             </div>
             <div id="dashboardSQL" class="container tab-pane fade">
-                <div class="form-group">
-                    <label for="comment">SQL Commad line:</label>
-                    <textarea class="form-control" rows="5" id="comment"></textarea>
-                </div>
+                <form action="../PHP/adminSQL.php" method="get">
+                    <div class="form-group">
+                        <label for="SQLComandLine">SQL Commad line:</label>
+                        <textarea type="text" class="form-control" rows="5" name="SQLComandLine"></textarea>
+                        <!-- <input type="text" class="form-control" name="SQLComandLine" placeholder="Enter username"> -->
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ready</button>
+                </form>
+
             </div>
         </div>
     </main>

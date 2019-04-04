@@ -1,5 +1,6 @@
 <?php
 
+
 include 'connection.php';
 
 // form variables initialization and declaration
@@ -23,11 +24,12 @@ catch (PDOException $e) {
 if($connection_status){
     try{
         // database prepared statements
-        $logIn = $dbh->prepare("SELECT * FROM Employee WHERE email = :log_email AND password = :log_password");
+        $logIn = $dbh->prepare("SELECT * FROM Employee WHERE email = :log_email AND password = :log_password;" );
         $logIn->bindParam(':log_email', $log_email);
         $logIn->bindParam(':log_password', $log_password);
         $logIn->execute();
         print("<br> Query executed!");
+
 
         $count = $logIn->rowCount();
 
@@ -38,7 +40,7 @@ if($connection_status){
         else{
             header("Location: ../index.html?success=0");
         }
-        
+
     }
     catch(PDOException $e){
         print("Can't execute this query!");
