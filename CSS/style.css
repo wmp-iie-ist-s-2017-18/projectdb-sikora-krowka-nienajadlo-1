@@ -204,10 +204,6 @@ a {
 }
 
 .dashNav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -217,6 +213,17 @@ a {
 .dashNav .userPanel li {
   text-align: center;
   padding: 0 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.dashNav .userPanel a {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 @media (min-width: 991px) and (max-width: 1080px) {

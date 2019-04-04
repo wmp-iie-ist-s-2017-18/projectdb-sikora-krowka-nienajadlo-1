@@ -6,7 +6,7 @@ include 'connection.php';
 
 // try to connect with database
 try {
-    $dbh = new PDO("pgsql:host=$servername;dbname=$dbname", $username, $password);
+    $dbh = new PDO($db_dsn, $db_username, $db_password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $connection_status = true;
@@ -27,10 +27,11 @@ if($connection_status){
         $logIn->execute();
         print("<br> Query executed!");
 
-        header("Location: ../SUBPAGES/dashboard.html");
+        header("Location: ../SUBPAGES/dashboard.html?sql=1");
     }
     catch(PDOException $e){
-    var_dump($e->getMessage());
+        // var_dump($e->getMessage());
+        header("Location: ../SUBPAGES/dashboard.html?sql=0");
     }
 }
 
