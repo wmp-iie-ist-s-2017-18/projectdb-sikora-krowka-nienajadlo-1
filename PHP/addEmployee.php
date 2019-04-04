@@ -1,31 +1,29 @@
 
 <?php
-$servername = "localhost";
-$username = "postgres";
-$password = "postgres";
-$dbname = "ProjectManager";
+    include 'connection.php';
 
-try {
-    $conn = new PDO("pgsql:host=$servername;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    try {
+        $conn = new PDO($db_dsn, $db_username, $db_password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $email = $_REQUEST['regEmail'];
-    $login = $_REQUEST['regLogin'];
-    $password = $_REQUEST['regPass'];
-    $stmt = $conn->prepare('INSERT INTO public.employee ("Employee_ID" , "Email" , "Login" , "Password" )'." VALUES (1 ,'$email' ,'$login', '$password')"); 
-    $stmt->execute();
+        $email = $_POST['logRegEmail'];
+        $login = $_POST['logRegLogin'];
+        $password = $_POST['logRegPassword'];
+        $stmt = $conn->prepare("INSERT INTO `employee`(`login`, `password`, `email`) VALUES ('$login','$password','$email')"); 
+        $stmt->execute();
     }
-    
-catch(PDOException $e)
-    {
         
-    echo "Connection failed: " . $e->getMessage();
-    }
-    header("Location:../index.html");
-    
-    // echo "<script> alert('Account creat successfully')</script>";
-    
+    catch(PDOException $e)
+        {
+            print("Error!: " . $e->getMessage() . "<br/>");
+            $connection_status = false;
+            die();
+        }
+        header("Location:../index.html?register=1");
+        
+        // echo "<script> alert('Account created successfully')</script>";
+        
 ?>
 
 
