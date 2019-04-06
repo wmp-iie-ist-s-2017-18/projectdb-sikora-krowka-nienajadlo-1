@@ -24,17 +24,27 @@ catch (PDOException $e) {
 if($connection_status){
     try{
         // database prepared statements
-        $logIn = $dbh->prepare("SELECT * FROM Employee WHERE email = :log_email AND password = :log_password;" );
+        $logIn = $dbh->prepare("SELECT * FROM Employee WHERE email = :log_email;" );
         $logIn->bindParam(':log_email', $log_email);
-        $logIn->bindParam(':log_password', $log_password);
+        // $logIn->bindParam(':log_password', $log_password);
         $logIn->execute();
         print("<br> Query executed!");
 
-
+        $result = $logIn->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
+        
         $count = $logIn->rowCount();
 
         if($count == 1){
-            header("Location: ../SUBPAGES/dashboard.html?succes=1");
+            print($result[5]);
+
+            if(password_verify($log_password, $result[5])){
+                header("Location: ../SUBPAGES/dashboard.html?succes=1");
+            }     
+            else{
+                header("Location: ../index.php?success=0");
+            }
+
+            
         }
 
         else{

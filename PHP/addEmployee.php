@@ -11,7 +11,11 @@
         $email = $_POST['logRegEmail'];
         $login = $_POST['logRegLogin'];
         $password = $_POST['logRegPassword'];
-        $stmt = $conn->prepare("INSERT INTO `employee`(`login`, `password`, `email`) VALUES ('$login','$password','$email')"); 
+
+        // password hashing with default salt
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+
+        $stmt = $conn->prepare("INSERT INTO `employee`(`login`, `password`, `email`) VALUES ('$login','$hash','$email')"); 
         $stmt->execute();
       
         header("Location:../index.php?register=1");
