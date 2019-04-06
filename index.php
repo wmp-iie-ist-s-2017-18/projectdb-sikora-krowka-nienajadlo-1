@@ -176,8 +176,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="logSignInButton" class="btn btn-primary"><input id="logSubmit"
-                            type="submit" value="Sign in">
+                    <button type="submit" id="logSignInButton" class="btn btn-primary">Sign in
                     </button>
                 </div>
                 </form>

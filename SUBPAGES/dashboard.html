@@ -52,13 +52,8 @@
                 <li class="nav-item" id="adminSQL">
                     <a class="nav-link" id="adminHrefSQL" data-toggle="tab" href="#dashboardSQL">SQL</a>
                 </li>
-                <li id="dashSearchBox" class="nav-item">
-                    <form class="form-inline d-none d-sm-none d-xs-none d-md-none d-lg-block d-xl-block" action="#">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
-                        </span>
-                    </form>
+                <li class="nav-item" id="signOut">
+                    <a class="nav-link" data-toggle="tab"><i class="fas fa-sign-out-alt"></i></a>
                 </li>
             </ul>
         </div>
@@ -142,6 +137,8 @@
             $("#SQLComandLine").css("border", "1px dashed red");
         }
     </script>
+
+    <script src="../SCRIPTS/dashboard.js"></script>
 
 </body>
 

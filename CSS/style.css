@@ -216,6 +216,7 @@ a {
 
 .dashNav .userPanel li {
   text-align: center;
+  text-align-cursor: pointer;
   padding: 0 20px;
   -webkit-user-select: none;
      -moz-user-select: none;
