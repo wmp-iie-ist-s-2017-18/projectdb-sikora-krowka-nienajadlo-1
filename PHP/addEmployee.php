@@ -23,11 +23,12 @@
         
     catch(PDOException $e)
         {
-            print("Error!: " . $e->getMessage() . "<br/>");
+            header("Location:../index.php?register=0");
+            // print("Error!: " . $e->getMessage() . "<br/>");
             $connection_status = false;
             die();
         }
-
+        
 ?>
 
 

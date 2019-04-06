@@ -187,19 +187,6 @@
     <!-- external scripts -->
     <script src="SCRIPTS/logpanel.js"></script>
 
-    <!-- <script>
-        var url = $(location).attr('href');
-        const failed_log = "success=0";
-        const register_log = "register=1";
-        if (url.indexOf(failed_log) >= 1) {
-            $("#signIn").click();
-            $("#logPasswordText").html("Wrong email or password!").css("color", "red");
-        }
-        if (url.indexOf(register_log) >= 1) {
-            alert("Succesfully registered!");
-        }
-    </script> -->
-
     <?php
         //register form 
         if (isset($_GET['register']) && $_GET['register'] == 1) {
@@ -207,7 +194,7 @@
         }
         else if(isset($_GET['register']) && $_GET['register'] == 0){
             echo("<script>$('#signUp').click();</script>"); 
-            echo("<script>$('#logRegRepeatText').html('Can\'t use this email or login!').css('color', 'red');</script>"); 
+            echo("<script>$('#logRegRepeatText').html('Can\'t use this email adress or login! Try again.').css('color', 'red');</script>"); 
         }
 
         //sign in form
