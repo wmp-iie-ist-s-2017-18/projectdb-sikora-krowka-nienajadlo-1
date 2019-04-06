@@ -38,7 +38,7 @@ if($connection_status){
         }
 
         else{
-            header("Location: ../index.html?success=0");
+            header("Location: ../index.php?success=0");
         }
 
     }

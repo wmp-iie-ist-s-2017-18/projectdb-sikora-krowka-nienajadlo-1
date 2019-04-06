@@ -110,24 +110,24 @@
                             <div class="form-group">
                                 <label for="logRegEmail">Email:</label>
                                 <input type="email" name="logRegEmail" class="form-control" placeholder="Email"
-                                    id="logRegEmail" required>
+                                    id="logRegEmail" autocomplete="off" required>
                                 <div id="logRegEmailText"></div>
                             </div>
                             <div class="form-group">
                                 <label for="logRegLogin">Login:</label>
-                                <input type="text" name="logRegLogin" class="form-control" placeholder="Login"
+                                <input type="text" name="logRegLogin" autocomplete="off" class="form-control" placeholder="Login"
                                     id="logRegLogin" required>
                                 <div id="logRegLoginText"></div>
                             </div>
                             <div class="form-group">
                                 <label for="logRegPassword">Password:</label>
-                                <input type="password" name="logRegPassword" class="form-control" placeholder="Password"
+                                <input type="password" name="logRegPassword" autocomplete="off" class="form-control" placeholder="Password"
                                     id="logRegPassword" required>
                                 <div id="logRegPasswordText"></div>
                             </div>
                             <div class="form-group">
                                 <label for="logRegRepeat">Repeat Password:</label>
-                                <input type="password" class="form-control" placeholder="Repeat a password"
+                                <input type="password" class="form-control" autocomplete="off" placeholder="Repeat a password"
                                     id="logRegRepeat" required>
                                 <div id="logRegRepeatText"></div>
                             </div>
@@ -135,7 +135,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Ready</button>
+                    <button type="submit" class="btn btn-primary" id="logRegSubmit">Ready</button>
                 </div>
                 </form>
             </div>
@@ -158,13 +158,13 @@
                         <div class="container">
                             <div class="form-group">
                                 <label for="logEmail">Email:</label>
-                                <input type="text" class="form-control" name="logEmail" placeholder="Email"
+                                <input type="text" class="form-control" name="logEmail" autocomplete="off" placeholder="Email"
                                     id="logEmail" required>
                                 <div id="logEmailText"></div>
                             </div>
                             <div class="form-group">
                                 <label for="logPassword">Password:</label>
-                                <input type="password" class="form-control" name="logPassword" placeholder="Password"
+                                <input type="password" class="form-control" name="logPassword" autocomplete="off" placeholder="Password"
                                     id="logPassword" required>
                                 <div id="logPasswordText"></div>
                                 <div id="logLoader">Wrong email or password!</div>
@@ -188,7 +188,7 @@
     <!-- external scripts -->
     <script src="SCRIPTS/logpanel.js"></script>
 
-    <script>
+    <!-- <script>
         var url = $(location).attr('href');
         const failed_log = "success=0";
         const register_log = "register=1";
@@ -199,7 +199,26 @@
         if (url.indexOf(register_log) >= 1) {
             alert("Succesfully registered!");
         }
-    </script>
+    </script> -->
+
+    <?php
+        //register form 
+        if (isset($_GET['register']) && $_GET['register'] == 1) {
+            echo("<script>alert('Succesfully registered!');</script>");
+        }
+        else if(isset($_GET['register']) && $_GET['register'] == 0){
+            echo("<script>$('#signUp').click();</script>"); 
+            echo("<script>$('#logRegRepeatText').html('Can\'t use this email or login!').css('color', 'red');</script>"); 
+        }
+
+        //sign in form
+        if (isset($_GET['success']) && $_GET['success'] == 0) {
+            echo("<script>$('#signIn').click();</script>");
+            echo("<script>$('#logPasswordText').html('Wrong email or password!');</script>");
+            echo("<script>$('#logPasswordText').css('color','red');</script>");
+        }
+
+    ?>
 
 </body>
 

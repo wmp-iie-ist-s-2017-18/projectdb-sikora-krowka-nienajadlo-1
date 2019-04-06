@@ -13,6 +13,8 @@
         $password = $_POST['logRegPassword'];
         $stmt = $conn->prepare("INSERT INTO `employee`(`login`, `password`, `email`) VALUES ('$login','$password','$email')"); 
         $stmt->execute();
+      
+        header("Location:../index.php?register=1");
     }
         
     catch(PDOException $e)
@@ -21,10 +23,7 @@
             $connection_status = false;
             die();
         }
-        header("Location:../index.html?register=1");
-        
-        // echo "<script> alert('Account created successfully')</script>";
-        
+
 ?>
 
 
