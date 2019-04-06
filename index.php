@@ -26,7 +26,7 @@
     <!-- log page navigation -->
     <div id="logWrapper" class="wrapper">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark logNav">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img class="logLogo" src="img/vs.png" alt="Logo">
                 <span class="logLogoDesc">Project Manager</span>
             </a>
