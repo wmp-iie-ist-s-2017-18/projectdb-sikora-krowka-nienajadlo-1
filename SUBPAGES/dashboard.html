@@ -28,7 +28,7 @@
     <!-- dashboard navigation -->
     <!-- A grey horizontal navbar that becomes vertical on small screens -->
     <nav class="dashNav navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="dashboard.html">
             <img class="logLogo" src="../img/vs.png" alt="Logo">
             <span class="logLogoDesc">Project Manager</span>
         </a>
@@ -46,19 +46,15 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#dashboardTeam">Team</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#dashboardSettings">Settings</a>
-                </li>
                 <li class="nav-item" id="adminSQL">
                     <a class="nav-link" id="adminHrefSQL" data-toggle="tab" href="#dashboardSQL">SQL</a>
                 </li>
-                <li id="dashSearchBox" class="nav-item">
-                    <form class="form-inline d-none d-sm-none d-xs-none d-md-none d-lg-block d-xl-block" action="#">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
-                        </span>
-                    </form>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#dashboardSettings"><i class="fas fa-user-cog"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#dashboardSettings"><i
+                            class="fas fa-sign-out-alt"></i></a>
                 </li>
             </ul>
         </div>
@@ -74,45 +70,44 @@
     <main id="dashboardMain">
         <div class="tab-content">
             <div id="dashboardHome" class="container tab-pane active">
-                Dashboard
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum quam blanditiis ab odio facere odit
-                perferendis laudantium, alias ullam nulla? Ad eaque architecto, expedita soluta quo, voluptatum natus
-                non quis aliquid, quos reiciendis laboriosam dolore illum hic? Id illum minima mollitia eius tempore
-                labore commodi temporibus nesciunt? Amet laboriosam, pariatur iste animi, id dolore nobis modi
-                exercitationem repudiandae vel veritatis at beatae alias enim atque sint, aut culpa explicabo quam qui
-                eligendi totam! Doloremque libero nobis ducimus nulla, dignissimos, odit est in possimus, voluptates
-                iure corporis at consequuntur earum. Quis iste nisi eum id, optio quaerat? Natus impedit laboriosam
-                aspernatur?
-
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4">Dashboard</h1>
+                        <p class="lead">This is dashboard main page.</p>
+                    </div>
+                </div>
             </div>
             <div id="dashboardProjects" class="container tab-pane fade">
-                Projects
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, totam officia! Ducimus, veritatis
-                iure. Culpa voluptates ab nemo in similique illo nesciunt amet vitae omnis vero eius maiores pariatur
-                minima soluta, debitis tenetur! Tempora ipsa enim quas excepturi veniam neque libero facilis non culpa.
-                Dolorum aspernatur omnis iste facere hic itaque ad voluptate minus rerum, debitis voluptas voluptatem
-                soluta natus facilis, repellat nisi repudiandae dignissimos praesentium. Cupiditate maiores ea sapiente
-                possimus placeat quibusdam fugit at quae natus nemo assumenda asperiores rerum nam rem consequatur
-                nesciunt, earum autem odit deleniti architecto dicta aliquam. Odio perferendis explicabo, fuga modi,
-                voluptate, rem accusamus consequatur accusantium delectus nam exercitationem? Reiciendis porro mollitia
-                autem inventore sapiente incidunt suscipit commodi ullam unde vero repellat a illum molestiae fuga vitae
-                saepe, veniam facilis quia, nesciunt dicta deserunt. Hic non, eligendi labore inventore impedit cumque
-                quidem, animi enim, explicabo ut voluptas! Excepturi nulla molestiae corrupti reiciendis, harum
-                repudiandae aspernatur ex, placeat distinctio dolorum amet dolor quam neque consequuntur ab a doloremque
-                repellendus illo, autem alias eos. Eum perspiciatis autem ea temporibus officia recusandae nemo error,
-                possimus dolorum beatae, eius, cumque nisi perferendis voluptatibus architecto ut laboriosam vel!
-                Aliquam, perspiciatis soluta deserunt tempora optio omnis dolorum sapiente neque rem?
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4">Projects</h1>
+                        <p class="lead">This is Projects subpage.</p>
+                    </div>
+                </div>
             </div>
             <div id="dashboardTeam" class="container tab-pane fade">
-                lorem9999
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4">Team</h1>
+                        <p class="lead">This is Team subpage.</p>
+                    </div>
+                </div>
             </div>
             <div id="dashboardSettings" class="container tab-pane fade">
-                Settings
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4">Settings</h1>
+                        <p class="lead">This is Settings subpage.</p>
+                    </div>
+                </div>
             </div>
             <div id="dashboardSQL" class="container tab-pane fade">
                 <form action="../PHP/adminSQL.php" method="get">
                     <div class="form-group">
-                        <label for="SQLComandLine">SQL Commad line:</label>
+
+                        <label for="SQLComandLine">
+                            <p class="lead">SQL Command line</p>
+                        </label>
                         <textarea type="text" class="form-control" rows="5" id="SQLComandLine"
                             name="SQLComandLine"></textarea>
                         <!-- <input type="text" class="form-control" name="SQLComandLine" placeholder="Enter username"> -->
@@ -142,6 +137,8 @@
             $("#SQLComandLine").css("border", "1px dashed red");
         }
     </script>
+
+    <script src="../SCRIPTS/dashboard.js"></script>
 
 </body>
 

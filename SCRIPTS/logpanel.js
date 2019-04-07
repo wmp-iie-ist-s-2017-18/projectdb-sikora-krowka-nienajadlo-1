@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    // disabled logRegSubmit button 
+    // $('#logRegSubmit').attr("disabled", true);
+
     // regular expression to email checker
     const emailReg = /^[a-z\d]+[\w\d.-]*@(?:[a-z\d]+[a-z\d-]+\.){1,5}[a-z]{2,6}$/i;
 
@@ -17,6 +20,7 @@ $(document).ready(function () {
         } else if (mediumRegex.test($(this).val())) {
             $('#logRegPasswordText').className = 'alert';
             $('#logRegPasswordText').html('Medium!').css("color", "orange");
+
         } else {
             $('#logRegPasswordText').className = 'error';
             $('#logRegPasswordText').html('Weak!').css("color", "red");
@@ -68,4 +72,36 @@ $(document).ready(function () {
         }
     });
 
+    $('input').focusout(function (e) {
+        $('#logRegSubmit').attr("disabled", false);
+    });
+
+    $('#logRegSubmit').hover(function () {
+        if ($('#logRegPasswordText').html() === 'More Characters') {
+            $('#logRegSubmit').attr("disabled", true);
+        } else if ($('#logRegPasswordText').html() === 'Weak!') {
+            $('#logRegSubmit').attr("disabled", true);
+        } else if ($("#logRegLoginText").html() === "Login must be longer!") {
+            $('#logRegSubmit').attr("disabled", true);
+        } else if ($("#logRegRepeatText").html() === "Repeated password is incorrect!") {
+            $('#logRegSubmit').attr("disabled", true);
+        } else if ($("#logRegEmailText").html() === "Wrong email adress!") {
+            $('#logRegSubmit').attr("disabled", true);
+        } else {
+            $('#logRegSubmit').attr("disabled", false);
+        }
+    });
+
+    // signIn form
+    $('#logPassword').keyup(function (e) {
+        $('#logPasswordText').fadeOut(600, function () {
+            $('#logPasswordText').html('');
+        });
+
+    });
+
 });
+
+
+
+// $('#logRegSubmit').attr("disabled", false);

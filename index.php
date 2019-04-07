@@ -22,10 +22,11 @@
 </head>
 
 <body>
+
     <!-- log page navigation -->
     <div id="logWrapper" class="wrapper">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark logNav">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img class="logLogo" src="img/vs.png" alt="Logo">
                 <span class="logLogoDesc">Project Manager</span>
             </a>
@@ -102,37 +103,39 @@
                     </button>
                 </div>
                 <div class="modal-body">
+
                     <div class="container">
-                        <form action="PHP/addEmployee.php" method="get">
+                        <form action="PHP/addEmployee.php" method="POST">
+
                             <div class="form-group">
                                 <label for="logRegEmail">Email:</label>
-                                <input type="email" class="form-control" placeholder="Email" id="logRegEmail" required
-                                    name="regEmail">
+                                <input type="email" name="logRegEmail" class="form-control" placeholder="Email"
+                                    id="logRegEmail" autocomplete="off" required>
                                 <div id="logRegEmailText"></div>
                             </div>
                             <div class="form-group">
                                 <label for="logRegLogin">Login:</label>
-                                <input type="text" class="form-control" placeholder="Login" id="logRegLogin" required
-                                    name="regLogin">
+                                <input type="text" name="logRegLogin" autocomplete="off" class="form-control" placeholder="Login"
+                                    id="logRegLogin" required>
                                 <div id="logRegLoginText"></div>
                             </div>
                             <div class="form-group">
                                 <label for="logRegPassword">Password:</label>
-                                <input type="password" class="form-control" placeholder="Password" id="logRegPassword"
-                                    required name="regPass">
+                                <input type="password" name="logRegPassword" autocomplete="off" class="form-control" placeholder="Password"
+                                    id="logRegPassword" required>
                                 <div id="logRegPasswordText"></div>
                             </div>
                             <div class="form-group">
                                 <label for="logRegRepeat">Repeat Password:</label>
-                                <input type="password" class="form-control" placeholder="Repeat a password"
-                                    id="logRegRepeat" required name="regRepPass">
+                                <input type="password" class="form-control" autocomplete="off" placeholder="Repeat a password"
+                                    id="logRegRepeat" required>
                                 <div id="logRegRepeatText"></div>
                             </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Ready</button>
+                    <button type="submit" class="btn btn-primary" id="logRegSubmit">Ready</button>
                 </div>
                 </form>
             </div>
@@ -142,7 +145,7 @@
     <!-- Log in panel -->
     <div class="modal fade" id="logLogIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" id="logModal" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Sign In</h5>
@@ -151,36 +154,57 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="container">
-
-                        <div class="form-group">
-                            <label for="logEmail">Email:</label>
-                            <input type="text" class="form-control" placeholder="Email" id="logEmail">
-                            <div id="logEmailText"></div>
+                    <form id="loggingForm" action="PHP/logIn.php" method="post">
+                        <div class="container">
+                            <div class="form-group">
+                                <label for="logEmail">Email:</label>
+                                <input type="text" class="form-control" name="logEmail" autocomplete="off" placeholder="Email"
+                                    id="logEmail" required>
+                                <div id="logEmailText"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="logPassword">Password:</label>
+                                <input type="password" class="form-control" name="logPassword" autocomplete="off" placeholder="Password"
+                                    id="logPassword" required>
+                                <div id="logPasswordText"></div>
+                                <div id="logLoader">Wrong email or password!</div>
+                            </div>
+                            <div class="form-group">
+                                <a class="forgetPass" href="#">Reset Password</a>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" placeholder="Password" id="logPassword">
-                            <div id="logPasswordText"></div>
-                            <div id="logLoader">Logged in!</div>
-                        </div>
-                        <div class="form-group">
-                            <a class="forgetPass" href="#">Reset Password</a>
-                        </div>
-
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="logSignInButton" class="btn btn-primary">Sign In</button>
+                    <button type="submit" id="logSignInButton" class="btn btn-primary">Sign in
+                    </button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
 
     <!-- external scripts -->
-    <script src="SCRIPTS/passwordStrength.js"></script>
     <script src="SCRIPTS/logpanel.js"></script>
+
+    <?php
+        //register form 
+        if (isset($_GET['register']) && $_GET['register'] == 1) {
+            echo("<script>alert('Succesfully registered!');</script>");
+        }
+        else if(isset($_GET['register']) && $_GET['register'] == 0){
+            echo("<script>$('#signUp').click();</script>"); 
+            echo("<script>$('#logRegRepeatText').html('Can\'t use this email adress or login! Try again.').css('color', 'red');</script>"); 
+        }
+
+        //sign in form
+        if (isset($_GET['success']) && $_GET['success'] == 0) {
+            echo("<script>$('#signIn').click();</script>");
+            echo("<script>$('#logPasswordText').html('Wrong email or password!');</script>");
+            echo("<script>$('#logPasswordText').css('color','red');</script>");
+        }
+
+    ?>
 
 </body>
 

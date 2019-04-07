@@ -11,19 +11,23 @@
         $email = $_POST['logRegEmail'];
         $login = $_POST['logRegLogin'];
         $password = $_POST['logRegPassword'];
-        $stmt = $conn->prepare("INSERT INTO `employee`(`login`, `password`, `email`) VALUES ('$login','$password','$email')"); 
+
+        // password hashing with default salt
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+
+        $stmt = $conn->prepare("INSERT INTO `employee`(`login`, `password`, `email`) VALUES ('$login','$hash','$email')"); 
         $stmt->execute();
+      
+        header("Location:../index.php?register=1");
     }
         
     catch(PDOException $e)
         {
-            print("Error!: " . $e->getMessage() . "<br/>");
+            header("Location:../index.php?register=0");
+            // print("Error!: " . $e->getMessage() . "<br/>");
             $connection_status = false;
             die();
         }
-        header("Location:../index.html?register=1");
-        
-        // echo "<script> alert('Account created successfully')</script>";
         
 ?>
 
