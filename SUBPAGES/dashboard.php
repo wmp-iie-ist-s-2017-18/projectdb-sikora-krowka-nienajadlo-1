@@ -52,19 +52,12 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#dashboardSettings"><i class="fas fa-user-cog"></i></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#dashboardSettings"><i
-                            class="fas fa-sign-out-alt"></i></a>
+                <li class="nav-item" id="signOut">
+                    <a class="nav-link" data-toggle="tab"><i class="fas fa-sign-out-alt"></i></a>
                 </li>
             </ul>
         </div>
     </nav>
-
-
-
-
-
-
 
     <!-- dashboard main -->
     <main id="dashboardMain">
@@ -94,10 +87,47 @@
                 </div>
             </div>
             <div id="dashboardSettings" class="container tab-pane fade">
-                <div class="jumbotron jumbotron-fluid">
+                <div class="settingsJumbotron jumbotron jumbotron-fluid">
                     <div class="container">
-                        <h1 class="display-4">Settings</h1>
-                        <p class="lead">This is Settings subpage.</p>
+                        <div class="row">
+                            <div class="col-xs-12 text-sm-center col-sm-12 col-md-5">
+                                <h1 class="display-4">
+                                    Settings
+                                </h1>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-7">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="firstName">First name</label>
+                                        <input type="text" class="form-control" placeholder="Your first name."
+                                            id="firstName">
+                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email
+                                            with anyone else.</small> -->
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last name:</label>
+                                        <input type="text" id="lastName" class="form-control"
+                                            placeholder="Your last name.">
+                                    </div>
+                                    <div class=" form-group">
+                                        <label for="email">Email adress:</label>
+                                        <input type="text" id="lastName" class="form-control" id="email"
+                                            placeholder="Your email adress.">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="position">Position:</label>
+                                        <input type="text" id="position" class="form-control" id="password"
+                                            placeholder="Your position in company.">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password:</label>
+                                        <input type="password" id="lastName" class="form-control" id="password"
+                                            placeholder="Your new password.">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary float-right">Submit</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -124,19 +154,16 @@
         <p>Project Manager - All rights reserved &copy;</p>
     </footer>
 
-    <script>
-        var url = $(location).attr('href');
-        const sql_query = "sql=1";
-        const sql_query_error = "sql=0";
-
-        if (url.indexOf(sql_query) >= 1) {
-            $("#adminHrefSQL").click();
+    <?php
+        //register form 
+        if (isset($_GET['sql']) && $_GET['sql'] == 0) {
+            echo("<script>$('#adminHrefSQL').click();</script>");
+            echo("<script>$('#SQLComandLine').css('border', '1px dashed red');</script>");
         }
-        if (url.indexOf(sql_query_error) >= 1) {
-            $("#adminHrefSQL").click();
-            $("#SQLComandLine").css("border", "1px dashed red");
+        else if(isset($_GET['sql']) && $_GET['sql'] == 1){
+            echo("<script>$('#adminHrefSQL').click();</script>"); 
         }
-    </script>
+    ?>
 
     <script src="../SCRIPTS/dashboard.js"></script>
 

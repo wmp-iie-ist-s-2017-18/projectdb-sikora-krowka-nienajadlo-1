@@ -27,11 +27,11 @@ if($connection_status){
         $logIn->execute();
         print("<br> Query executed!");
 
-        header("Location: ../SUBPAGES/dashboard.html?sql=1");
+        header("Location: ../SUBPAGES/dashboard.php?sql=1");
     }
     catch(PDOException $e){
         // var_dump($e->getMessage());
-        header("Location: ../SUBPAGES/dashboard.html?sql=0");
+        header("Location: ../SUBPAGES/dashboard.php?sql=0");
     }
 }
 

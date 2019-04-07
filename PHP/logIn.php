@@ -38,7 +38,7 @@ if($connection_status){
             print($result[5]);
 
             if(password_verify($log_password, $result[5])){
-                header("Location: ../SUBPAGES/dashboard.html?succes=1");
+                header("Location: ../SUBPAGES/dashboard.php?succes=1");
             }     
             else{
                 header("Location: ../index.php?success=0");
