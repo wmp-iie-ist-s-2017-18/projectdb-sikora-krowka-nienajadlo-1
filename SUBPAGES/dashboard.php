@@ -70,14 +70,28 @@
                     </div>
                 </div>
             </div>
+
             <div id="dashboardProjects" class="container tab-pane fade">
-                <div class="jumbotron jumbotron-fluid">
-                    <div class="container">
-                        <h1 class="display-4">Projects</h1>
-                        <p class="lead">This is Projects subpage.</p>
+                <div class="row projectsPage">
+                    <div class="col-3 col-lg-2 ">
+                        <nav class="navbar bg-ligh navbar-light projectsNav">
+                            <h6>Select Project:</h1>
+                                <ul class="navbar-nav nav" role="tablist">
+                                    <?php include '../PHP/showProjects.php' ?>
+                                </ul>
+
+                        </nav>
+                    </div>
+                    <div class="col-9 col-lg-10 tab-content">
+                        <?php include '../PHP/projectInfo.php' ?>
                     </div>
                 </div>
+
+                <!-- <h1 class="display-4">Projects</h1>
+                            <p class="lead">This is Projects subpage.</p> -->
             </div>
+
+
             <div id="dashboardTeam" class="container tab-pane fade">
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
