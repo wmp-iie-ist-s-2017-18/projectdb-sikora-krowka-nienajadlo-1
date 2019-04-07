@@ -55,7 +55,7 @@ a {
   margin: 0 5px;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 906px) {
   .logLogoDesc {
     display: none;
   }
@@ -229,12 +229,6 @@ a {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-}
-
-@media (min-width: 991px) and (max-width: 1080px) {
-  #dashSearchBox {
-    display: none;
-  }
 }
 
 @media screen and (max-width: 750px) {
