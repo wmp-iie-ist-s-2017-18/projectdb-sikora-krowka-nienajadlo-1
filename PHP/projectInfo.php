@@ -16,19 +16,29 @@ catch (PDOException $e) {
 
 if($connection_status){
     try{
-        $stmt = $dbh->prepare("SELECT * FROM project"); 
+        // $stmt = $dbh->prepare("SELECT * FROM project"); 
+        $stmt = $dbh->prepare('SELECT p.name , p.state , p.start ,p.finish , p.description , t.name  
+        AS teamName FROM project p ,team t WHERE p.team_ID = t.team_ID'); 
         $stmt->execute();
         $employeeArray = array();
         
         // set the resulting array to associative
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         foreach($stmt->fetchAll()as $k=>$v) {
-           echo ' <div class="tab-pane container  fade" id="'.$v['name'].'">
+        //    echo ' <div class="tab-pane container  active" id="'.$v['name'].'">
+        //                     <h4> '.$v['name'].'</h4>
+        //                     <h6>'.$v['state'].'</h6>
+        //                     <h6>'.$v['start'].'</h6>
+        //                     <h6>'.$v['finish'].'</h6>
+        //                     <h6>'.$v['team_ID'].'</h6>
+        //                 </div>';
+
+                        echo ' <div class="tab-pane container" id="'.$v['name'].'">
                             <h4> '.$v['name'].'</h4>
                             <h6>'.$v['state'].'</h6>
                             <h6>'.$v['start'].'</h6>
                             <h6>'.$v['finish'].'</h6>
-                            <h6>'.$v['team_ID'].'</h6>
+                            <h6>'.$v['teamName'].'</h6>
                         </div>';
         }
     }
