@@ -16,7 +16,7 @@ catch (PDOException $e) {
 
 if($connection_status){
     try{
-        $stmt = $dbh->prepare("SELECT name FROM project"); 
+        $stmt = $dbh->prepare("Select p.name AS name FROM project p, team_employee te ,team t where te.employee_ID = ".$_SESSION['id']." AND te.team_ID = p.team_ID"); 
         $stmt->execute();
         $employeeArray = array();
         
