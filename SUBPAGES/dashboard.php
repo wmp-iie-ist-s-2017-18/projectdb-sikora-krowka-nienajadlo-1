@@ -190,6 +190,7 @@
     ?>
 
     <script src="../SCRIPTS/dashboard.js"></script>
+    <!-- <script src="../SCRIPTS/timer.js"></script> -->
 
 </body>
 

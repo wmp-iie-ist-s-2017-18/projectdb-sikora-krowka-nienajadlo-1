@@ -24,7 +24,6 @@ if($connection_status){
         // set the resulting array to associative
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         foreach($stmt->fetchAll()as $k=>$v) {
-
                         echo ' <div class="tab-pane container" id="'.$v['name'].'">
                             <h4> '.$v['name'].'</h4>
                             <h6>'.$v['state'].'</h6>
