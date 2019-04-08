@@ -36,7 +36,7 @@
     <!-- dashboard navigation -->
     <!-- A grey horizontal navbar that becomes vertical on small screens -->
     <nav class="dashNav navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="dashboard.html">
+        <a class="navbar-brand" href="dashboard.php">
             <img class="logLogo" src="../img/vs.png" alt="Logo">
             <span class="logLogoDesc">Project Manager</span>
         </a>
