@@ -28,7 +28,7 @@
         try{
             // database prepared statements
             $update = $dbh->prepare("UPDATE `employee` SET `first_Name`=:fname, `last_Name`=:lname,
-              `position`=:position, `tel_number`=:tnumber WHERE email=:email");
+              `position`=:position, `tel_number`=:tnumber  WHERE email=:email");
             $update->bindParam(':lname', $lname);
             $update->bindParam(':fname', $fname);
             $update->bindParam(':position', $position);
@@ -36,7 +36,7 @@
             $update->bindParam(':email', $email);
             $update->execute();
             print("<br> Query executed!");
-            header("Location:../SUBPAGES/dashboard.php?activated=true");
+            header("Location:../SUBPAGES/dashboard.php?updated=true");
         }
         catch(PDOException $e){
             print("Can't execute this query!");

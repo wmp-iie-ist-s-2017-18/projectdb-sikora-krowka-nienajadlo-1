@@ -24,7 +24,7 @@
 
     <!-- php scripts -->
     <?php
-    
+        error_reporting(E_ERROR | E_PARSE);
         session_start();
 
         include '../PHP/connection.php';
@@ -51,15 +51,8 @@
                 $check->bindParam(':log_email', $_SESSION['email']);
                 $check->execute();
     
-                $result = $check->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
-    
-                $_SESSION['id'] = $result[0];
-                $_SESSION['fname'] = $result[1];
-                $_SESSION['lname'] = $result[2];
-                $_SESSION['login'] = $result[3];
-                $_SESSION['email'] = $result[4];
-                $_SESSION['position'] = $result[6];
-                $_SESSION['number'] = $result[9];
+                $tresult = $check->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
+ 
             }
             catch(PDOException $e){
                 print("Can't execute this query!");
@@ -161,31 +154,30 @@
                                     <div class="form-group">
                                         <label for="firstName">First name</label>
                                         <input type="text" name="fname" class="form-control" placeholder="Your first name."
-                                            id="firstName" value="<?php echo $_SESSION['fname'] ?>" required>
-                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email
-                                            with anyone else.</small> -->
-                                    </div>
+                                            id="firstName" value="<?php echo $tresult[1];?>" required>
+                                                     </div>
                                     <div class="form-group">
                                         <label for="lastName">Last name:</label>
                                         <input type="text" id="lastName" name="lname" class="form-control"
-                                            placeholder="Your last name." value="<?php echo $_SESSION['lname'] ?>" required>
+                                            placeholder="Your last name." value="<?php echo $tresult[2]; ?>" required>
                                     </div>
                                     <div class=" form-group">
                                         <label for="email">Email adress:</label>
                                         <input type="text" id="email" name="email" class="form-control" id="email"
-                                            placeholder="Your email adress." value="<?php echo $_SESSION['email'] ?>" required>
+                                            placeholder="Your email adress." value="<?php echo $tresult[4]; ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="position">Position:</label>
                                         <input type="text" id="position" name="position" class="form-control"
                                             placeholder="Your position in company."
-                                            value="<?php echo $_SESSION['position'] ?>" required>
+                                            value="<?php echo $tresult[6]; ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="number">Telephone number:</label>
                                         <input type="text" name="number" class="form-control" id="number"
-                                            placeholder="Your telephone number." value="<?php echo $_SESSION['number']; ?>"required>
+                                            placeholder="Your telephone number." value="<?php echo $tresult[8]; ?>"required>
                                     </div>
+                                    <small id="emailHelp" class="leads" style="display:none">Successfully updated!</small>
                                     <button type="submit" class="btn btn-primary float-right">Submit</button>
                                 </form>
                             </div>
@@ -231,9 +223,10 @@
             echo("<script>$('#adminHrefSQL').click();</script>"); 
         }
         
-        if (isset($_GET['activated']) && $_GET['activated'] == true) {
-            echo("<script>$('#adminHrefSQL').click();</script>");
-            echo("<script>$('#SQLComandLine').css('border', '1px dashed red');</script>");
+        if (isset($_GET['updated']) && $_GET['updated'] == true) {
+            echo("<script>$('#dashboardSettingsNav').click();</script>");
+            echo("<script>$('#emailHelp').css('color', 'green');</script>");
+            echo("<script>$('#emailHelp').fadeIn(900);</script>");
         }
     ?>
 
