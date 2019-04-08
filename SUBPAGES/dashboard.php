@@ -22,6 +22,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+    <!-- php scripts -->
+    <?php
+    
+        session_start();
+ 
+
+    ?>
+
 </head>
 
 <body>
@@ -38,19 +46,23 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="userPanel navbar-nav ml-auto nav" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#dashboardHome">Dashboard</a>
+                    <a id="dashboardHomeNav" class="nav-link active" data-toggle="tab"
+                        href="#dashboardHome">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#dashboardProjects">Projects</a>
+                    <a id="dashboardProjectsNav" class="nav-link" data-toggle="tab"
+                        href="#dashboardProjects">Projects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#dashboardTeam">Team</a>
+                    <a id="dashboardTeamNav" class="nav-link" data-toggle="tab" href="#dashboardTeam">Team</a>
                 </li>
                 <li class="nav-item" id="adminSQL">
-                    <a class="nav-link" id="adminHrefSQL" data-toggle="tab" href="#dashboardSQL">SQL</a>
+                    <a id="dashboardSQLNav" class="nav-link" id="adminHrefSQL" data-toggle="tab"
+                        href="#dashboardSQL">SQL</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#dashboardSettings"><i class="fas fa-user-cog"></i></a>
+                    <a id="dashboardSettingsNav" class="nav-link" data-toggle="tab" href="#dashboardSettings"><i
+                            class="fas fa-user-cog"></i></a>
                 </li>
                 <li class="nav-item" id="signOut">
                     <a class="nav-link" data-toggle="tab"><i class="fas fa-sign-out-alt"></i></a>
@@ -86,9 +98,6 @@
                         <?php include '../PHP/projectInfo.php' ?>
                     </div>
                 </div>
-
-                <!-- <h1 class="display-4">Projects</h1>
-                            <p class="lead">This is Projects subpage.</p> -->
             </div>
 
 
@@ -110,32 +119,33 @@
                                 </h1>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-7">
-                                <form>
+                                <form action="../PHP/updateUser.php">
                                     <div class="form-group">
                                         <label for="firstName">First name</label>
                                         <input type="text" class="form-control" placeholder="Your first name."
-                                            id="firstName">
+                                            id="firstName" value="<?php echo $_SESSION['fname'] ?>">
                                         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email
                                             with anyone else.</small> -->
                                     </div>
                                     <div class="form-group">
                                         <label for="lastName">Last name:</label>
                                         <input type="text" id="lastName" class="form-control"
-                                            placeholder="Your last name.">
+                                            placeholder="Your last name." value="<?php echo $_SESSION['lname'] ?>">
                                     </div>
                                     <div class=" form-group">
                                         <label for="email">Email adress:</label>
-                                        <input type="text" id="lastName" class="form-control" id="email"
-                                            placeholder="Your email adress.">
+                                        <input type="text" id="email" class="form-control" id="email"
+                                            placeholder="Your email adress." value="<?php echo $_SESSION['email'] ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="position">Position:</label>
-                                        <input type="text" id="position" class="form-control" id="password"
-                                            placeholder="Your position in company.">
+                                        <input type="text" id="position" class="form-control"
+                                            placeholder="Your position in company."
+                                            value="<?php echo $_SESSION['position'] ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password:</label>
-                                        <input type="password" id="lastName" class="form-control" id="password"
+                                        <input type="password" class="form-control" id="password"
                                             placeholder="Your new password.">
                                     </div>
                                     <button type="submit" class="btn btn-primary float-right">Submit</button>
