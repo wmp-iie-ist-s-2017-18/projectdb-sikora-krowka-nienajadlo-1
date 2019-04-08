@@ -144,6 +144,15 @@
                                             value="<?php echo $_SESSION['position'] ?>">
                                     </div>
                                     <div class="form-group">
+                                        <label for="pesel">PESEL:</label>
+                                        <input type="text" id="pesel" class="form-control"placeholder="Your PESEL number.">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="number">Telephone number:</label>
+                                        <input type="text" class="form-control" id="number"
+                                            placeholder="Your telephone number.">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="password">Password:</label>
                                         <input type="password" class="form-control" id="password"
                                             placeholder="Your new password.">

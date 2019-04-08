@@ -5,7 +5,8 @@ $(document).ready(function () {
         if ($("#firstName").val() === "") $("#firstName").css("box-shadow", " 0px 0px 5px 0px rgba(255,0,0,0.86)");
         if ($("#lastName").val() === "") $("#lastName").css("box-shadow", " 0px 0px 5px 0px rgba(255,0,0,0.86)");
         if ($("#position").val() === "") $("#position").css("box-shadow", " 0px 0px 5px 0px rgba(255,0,0,0.86)");
-
+        if ($("#number").val() === "") $("#number").css("box-shadow", " 0px 0px 5px 0px rgba(255,0,0,0.86)");
+        if ($("#pesel").val() === "") $("#pesel").css("box-shadow", " 0px 0px 5px 0px rgba(255,0,0,0.86)");
 
 
         $("#dashboardSettingsNav").click();
