@@ -56,9 +56,13 @@ if($connection_status){
                 $_SESSION['email'] = $result[4];
                 $_SESSION['position'] = $result[6];
 
-     
-                header("Location: ../SUBPAGES/dashboard.php?success=1");
-
+                if($result[7] == 0){
+                    header("Location: ../SUBPAGES/activation.php");
+                }
+                else{
+                    header("Location: ../SUBPAGES/dashboard.php?success=1");
+                }
+                
             }     
             else{
                 header("Location: ../index.php?success=0");

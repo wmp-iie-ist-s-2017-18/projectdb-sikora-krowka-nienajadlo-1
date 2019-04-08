@@ -1,34 +1,47 @@
-
 <?php
+    session_start();
     include 'connection.php';
 
+    // form variables initialization and declaration
+    $email = $_SESSION["email"];
+    $fname = $_POST["fname"];
+    $lname = $_POST["lname"];
+    $position = $_POST["position"];
+    $tnumber = $_POST["number"];
+
+
+    // try to connect with database
     try {
-        $conn = new PDO($db_dsn, $db_username, $db_password);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $dbh = new PDO($db_dsn, $db_username, $db_password);
+        $connection_status = true;
+        print("Connection estabilished");
+    } 
 
-
-        $email = $_POST['logRegEmail'];
-        $login = $_POST['logRegLogin'];
-        $password = $_POST['logRegPassword'];
-
-        // password hashing with default salt
-        $hash = password_hash($password, PASSWORD_BCRYPT);
-
-        $stmt = $conn->prepare("INSERT INTO `employee`(`login`, `password`, `email`) VALUES ('$login','$hash','$email')"); 
-        $stmt->execute();
-      
-        header("Location:../index.php?register=1");
+    // exception
+    catch (PDOException $e) {
+        print("Error!: " . $e->getMessage() . "<br/>");
+        $connection_status = false;
+        die();
     }
-        
-    catch(PDOException $e)
-        {
-            header("Location:../index.php?register=0");
-            // print("Error!: " . $e->getMessage() . "<br/>");
-            $connection_status = false;
-            die();
+
+    if($connection_status){
+        try{
+            // database prepared statements
+            $update = $dbh->prepare("UPDATE `employee` SET `first_Name`=:fname, `last_Name`=:lname,
+              `position`=:position, `tel_number`=:tnumber  WHERE email=:email");
+            $update->bindParam(':lname', $lname);
+            $update->bindParam(':fname', $fname);
+            $update->bindParam(':position', $position);
+            $update->bindParam(':tnumber', $tnumber);
+            $update->bindParam(':email', $email);
+            $update->execute();
+            print("<br> Query executed!");
+            header("Location:../SUBPAGES/dashboard.php?updated=true");
         }
-        
+        catch(PDOException $e){
+            print("Can't execute this query!");
+        }
+    }
 ?>
 
 

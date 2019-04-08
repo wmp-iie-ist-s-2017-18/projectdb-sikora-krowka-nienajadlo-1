@@ -24,10 +24,41 @@
 
     <!-- php scripts -->
     <?php
-    
+        error_reporting(E_ERROR | E_PARSE);
         session_start();
- 
 
+        include '../PHP/connection.php';
+        session_start();
+        $connection_status = false;
+    
+        // try to connect with database
+        try {
+            $dbh = new PDO($db_dsn, $db_username, $db_password);
+            $connection_status = true;
+        } 
+    
+        // exception
+        catch (PDOException $e) {
+            print("Error!: " . $e->getMessage() . "<br/>");
+            $connection_status = false;
+            die();
+        }
+    
+        if($connection_status){
+            try{
+                // database prepared statements
+                $check = $dbh->prepare("SELECT * FROM employee WHERE email = :log_email;");
+                $check->bindParam(':log_email', $_SESSION['email']);
+                $check->execute();
+    
+                $tresult = $check->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
+ 
+            }
+            catch(PDOException $e){
+                print("Can't execute this query!");
+            }
+        }
+ 
     ?>
 
 </head>
@@ -36,7 +67,7 @@
     <!-- dashboard navigation -->
     <!-- A grey horizontal navbar that becomes vertical on small screens -->
     <nav class="dashNav navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="dashboard.php">
+        <a class="navbar-brand" href="dashboard.php?main">
             <img class="logLogo" src="../img/vs.png" alt="Logo">
             <span class="logLogoDesc">Project Manager</span>
         </a>
@@ -119,35 +150,34 @@
                                 </h1>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-7">
-                                <form action="../PHP/updateUser.php">
+                                <form action="../PHP/updateUser.php" method="POST">
                                     <div class="form-group">
                                         <label for="firstName">First name</label>
-                                        <input type="text" class="form-control" placeholder="Your first name."
-                                            id="firstName" value="<?php echo $_SESSION['fname'] ?>">
-                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email
-                                            with anyone else.</small> -->
-                                    </div>
+                                        <input type="text" name="fname" class="form-control" placeholder="Your first name."
+                                            id="firstName" value="<?php echo $tresult[1];?>" required>
+                                                     </div>
                                     <div class="form-group">
                                         <label for="lastName">Last name:</label>
-                                        <input type="text" id="lastName" class="form-control"
-                                            placeholder="Your last name." value="<?php echo $_SESSION['lname'] ?>">
+                                        <input type="text" id="lastName" name="lname" class="form-control"
+                                            placeholder="Your last name." value="<?php echo $tresult[2]; ?>" required>
                                     </div>
                                     <div class=" form-group">
                                         <label for="email">Email adress:</label>
-                                        <input type="text" id="email" class="form-control" id="email"
-                                            placeholder="Your email adress." value="<?php echo $_SESSION['email'] ?>">
+                                        <input type="text" id="email" name="email" class="form-control" id="email"
+                                            placeholder="Your email adress." value="<?php echo $tresult[4]; ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="position">Position:</label>
-                                        <input type="text" id="position" class="form-control"
+                                        <input type="text" id="position" name="position" class="form-control"
                                             placeholder="Your position in company."
-                                            value="<?php echo $_SESSION['position'] ?>">
+                                            value="<?php echo $tresult[6]; ?>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Password:</label>
-                                        <input type="password" class="form-control" id="password"
-                                            placeholder="Your new password.">
+                                        <label for="number">Telephone number:</label>
+                                        <input type="text" name="number" class="form-control" id="number"
+                                            placeholder="Your telephone number." value="<?php echo $tresult[8]; ?>"required>
                                     </div>
+                                    <small id="emailHelp" class="leads" style="display:none">Successfully updated!</small>
                                     <button type="submit" class="btn btn-primary float-right">Submit</button>
                                 </form>
                             </div>
@@ -182,10 +212,21 @@
         //register form 
         if (isset($_GET['sql']) && $_GET['sql'] == 0) {
             echo("<script>$('#adminHrefSQL').click();</script>");
-            echo("<script>$('#SQLComandLine').css('border', '1px dashed red');</script>");
+            echo("<script>$('#SQLComandLine').css('border', '1px solid red');</script>");
+        }
+
+        if (!isset($_GET['sql'])) {
+            echo("<script>$('#adminHrefSQL').click();</script>");
+            echo("<script>$('#SQLComandLine').css('border', '1px solid royalblue');</script>");
         }
         else if(isset($_GET['sql']) && $_GET['sql'] == 1){
             echo("<script>$('#adminHrefSQL').click();</script>"); 
+        }
+        
+        if (isset($_GET['updated']) && $_GET['updated'] == true) {
+            echo("<script>$('#dashboardSettingsNav').click();</script>");
+            echo("<script>$('#emailHelp').css('color', 'green');</script>");
+            echo("<script>$('#emailHelp').fadeIn(900);</script>");
         }
     ?>
 
