@@ -226,7 +226,7 @@
             echo("<script>$('#SQLComandLine').css('border', '1px solid red');</script>");
         }
 
-        else if (isset($_GET['sql']) && $_GET['sql'] == 0) {
+        else if (isset($_GET['sql']) && $_GET['sql'] == 1) {
             echo("<script>$('#adminHrefSQL').click();</script>");
             echo("<script>$('#SQLComandLine').css('border', '1px solid green');</script>");
         }
