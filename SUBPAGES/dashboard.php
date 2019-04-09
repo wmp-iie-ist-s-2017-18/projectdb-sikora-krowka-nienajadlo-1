@@ -153,9 +153,10 @@
                                 <form action="../PHP/updateUser.php" method="POST">
                                     <div class="form-group">
                                         <label for="firstName">First name</label>
-                                        <input type="text" name="fname" class="form-control" placeholder="Your first name."
-                                            id="firstName" value="<?php echo $tresult[1];?>" required>
-                                                     </div>
+                                        <input type="text" name="fname" class="form-control"
+                                            placeholder="Your first name." id="firstName"
+                                            value="<?php echo $tresult[1];?>" required>
+                                    </div>
                                     <div class="form-group">
                                         <label for="lastName">Last name:</label>
                                         <input type="text" id="lastName" name="lname" class="form-control"
@@ -164,20 +165,30 @@
                                     <div class=" form-group">
                                         <label for="email">Email adress:</label>
                                         <input type="text" id="email" name="email" class="form-control" id="email"
-                                            placeholder="Your email adress." value="<?php echo $tresult[4]; ?>" required>
+                                            placeholder="Your email adress." value="<?php echo $tresult[4]; ?>"
+                                            disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="position">Position:</label>
                                         <input type="text" id="position" name="position" class="form-control"
-                                            placeholder="Your position in company."
-                                            value="<?php echo $tresult[6]; ?>" required>
+                                            placeholder="Your position in company." value="<?php echo $tresult[6]; ?>"
+                                            required>
                                     </div>
                                     <div class="form-group">
                                         <label for="number">Telephone number:</label>
                                         <input type="text" name="number" class="form-control" id="number"
-                                            placeholder="Your telephone number." value="<?php echo $tresult[8]; ?>"required>
+                                            placeholder="Your telephone number." value="<?php echo $tresult[8]; ?>"
+                                            required>
                                     </div>
-                                    <small id="emailHelp" class="leads" style="display:none">Successfully updated!</small>
+                                    <div class="form-group">
+                                        <label for="updatePassword">Password:</label>
+                                        <input type="password" name="updatePassword" class="form-control"
+                                            id="updatePassword" placeholder="Your password." required>
+                                        <small id="upPasswordText" class="leads" style="display:none">Wrong
+                                            password or incorrect data!</small>
+                                    </div>
+                                    <small id="emailHelp" class="leads" style="display:none">Successfully
+                                        updated!</small>
                                     <button type="submit" class="btn btn-primary float-right">Submit</button>
                                 </form>
                             </div>
@@ -215,6 +226,11 @@
             echo("<script>$('#SQLComandLine').css('border', '1px solid red');</script>");
         }
 
+        else if (isset($_GET['sql']) && $_GET['sql'] == 0) {
+            echo("<script>$('#adminHrefSQL').click();</script>");
+            echo("<script>$('#SQLComandLine').css('border', '1px solid green');</script>");
+        }
+
         if (!isset($_GET['sql'])) {
             echo("<script>$('#adminHrefSQL').click();</script>");
             echo("<script>$('#SQLComandLine').css('border', '1px solid royalblue');</script>");
@@ -223,10 +239,15 @@
             echo("<script>$('#adminHrefSQL').click();</script>"); 
         }
         
-        if (isset($_GET['updated']) && $_GET['updated'] == true) {
+        if (isset($_GET['updated']) && $_GET['updated'] == 1) {
             echo("<script>$('#dashboardSettingsNav').click();</script>");
             echo("<script>$('#emailHelp').css('color', 'green');</script>");
             echo("<script>$('#emailHelp').fadeIn(900);</script>");
+        }
+        else if (isset($_GET['updated']) && $_GET['updated'] == 0) {
+            echo("<script>$('#dashboardSettingsNav').click();</script>");
+            echo("<script>$('#upPasswordText').css('color', 'red');</script>");
+            echo("<script>$('#upPasswordText').fadeIn(900);</script>");
         }
     ?>
 

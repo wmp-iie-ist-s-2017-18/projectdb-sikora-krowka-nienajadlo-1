@@ -199,7 +199,7 @@ a {
 }
 
 #dashboardMain {
-  min-height: 92vh;
+  min-height: 95vh;
   padding-bottom: 0;
 }
 
@@ -283,5 +283,13 @@ a {
 
 .jumbotron {
   padding-bottom: 0;
+}
+
+#updatePassword {
+  border: 1px solid orange;
+}
+
+#upPasswordText, #emailHelp {
+  font-size: 1rem;
 }
 /*# sourceMappingURL=style.css.map */

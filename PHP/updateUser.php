@@ -8,6 +8,7 @@
     $lname = $_POST["lname"];
     $position = $_POST["position"];
     $tnumber = $_POST["number"];
+    $updatingPassword = $_POST["updatePassword"];
 
 
     // try to connect with database
@@ -26,20 +27,33 @@
 
     if($connection_status){
         try{
-            // database prepared statements
-            $update = $dbh->prepare("UPDATE `employee` SET `first_Name`=:fname, `last_Name`=:lname,
-              `position`=:position, `tel_number`=:tnumber  WHERE email=:email");
-            $update->bindParam(':lname', $lname);
-            $update->bindParam(':fname', $fname);
-            $update->bindParam(':position', $position);
-            $update->bindParam(':tnumber', $tnumber);
-            $update->bindParam(':email', $email);
-            $update->execute();
-            print("<br> Query executed!");
-            header("Location:../SUBPAGES/dashboard.php?updated=true");
+            $usercheck = $dbh->prepare("SELECT * FROM employee WHERE email = :email");
+            $usercheck->bindParam(':email', $email);
+            $usercheck->execute();
+            $cresult = $usercheck->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
+
+            if(password_verify($updatingPassword, $cresult[5])){
+
+                // database prepared statements
+                $update = $dbh->prepare("UPDATE `employee` SET `first_Name`=:fname, `last_Name`=:lname,
+                `position`=:position, `tel_number`=:tnumber  WHERE email=:email;");
+                $update->bindParam(':lname', $lname);
+                $update->bindParam(':fname', $fname);
+                $update->bindParam(':position', $position);
+                $update->bindParam(':tnumber', $tnumber);
+                $update->bindParam(':email', $email);
+                $update->execute();
+
+                header("Location:../SUBPAGES/dashboard.php?updated=1");
+
+            }
+
+            else{
+                header("Location:../SUBPAGES/dashboard.php?updated=0");
+            }
         }
         catch(PDOException $e){
-            print("Can't execute this query!");
+            header("Location:../SUBPAGES/dashboard.php?updated=0");
         }
     }
 ?>

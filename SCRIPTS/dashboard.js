@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     // first login --- must fill empty fields
     if ($("#firstName").val() === "" || $("lastName").val() === "" || $("position").val() || $("number").val() === "") {
 
