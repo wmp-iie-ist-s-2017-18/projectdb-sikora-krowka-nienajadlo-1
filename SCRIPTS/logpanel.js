@@ -13,7 +13,7 @@ $(document).ready(function () {
         var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
         var enoughRegex = new RegExp("(?=.{6,}).*", "g");
         if (false == enoughRegex.test($(this).val())) {
-            $('#logRegPasswordText').html('More Characters').css("color", "blue");
+            $('#logRegPasswordText').html('More Characters').css("color", "#fd7e14");
         } else if (strongRegex.test($(this).val())) {
             $('#logRegPasswordText').className = 'ok';
             $('#logRegPasswordText').html('Strong!').css("color", "Green");
@@ -28,12 +28,42 @@ $(document).ready(function () {
         return true;
     });
 
+    // reset panel password strength meter
+    $('#resetPassword').keyup(function (e) {
+        var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+        var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+        var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+        if (false == enoughRegex.test($(this).val())) {
+            $('#resetPasswordText').html('More Characters').css("color", "#fd7e14");
+        } else if (strongRegex.test($(this).val())) {
+            $('#resetPasswordText').className = 'ok';
+            $('#resetPasswordText').html('Strong!').css("color", "Green");
+        } else if (mediumRegex.test($(this).val())) {
+            $('#resetPasswordText').className = 'alert';
+            $('#resetPasswordText').html('Medium!').css("color", "orange");
+
+        } else {
+            $('#resetPasswordText').className = 'error';
+            $('#resetPasswordText#').html('Weak!').css("color", "red");
+        }
+        return true;
+    });
+
     // register panel repeat password checker
     $('#logRegRepeat').keyup(function (e) {
         if ($("#logRegRepeat").val() == $("#logRegPassword").val()) {
             $("#logRegRepeatText").html("Repeated password is correct!").css("color", "Green");
         } else {
             $("#logRegRepeatText").html("Repeated password is incorrect!").css("color", "Red");
+        }
+    });
+
+    // password reset panel repeat password checker
+    $('#repeatResetPassword').keyup(function (e) {
+        if ($("#repeatResetPassword").val() == $("#resetPassword").val()) {
+            $("#resetRepeatPasswordText").html("Repeated password is correct!").css("color", "Green");
+        } else {
+            $("#resetRepeatPasswordText").html("Repeated password is incorrect!").css("color", "Red");
         }
     });
 
@@ -63,6 +93,15 @@ $(document).ready(function () {
     });
 
 
+    // reset panel - email checker
+    $('#resetEmail').focusout(function (e) {
+        if (!validateEmail($("#resetEmail").val())) {
+            $("#resetEmailText").html("Wrong email adress!").css("color", "red");
+        } else if (validateEmail($("#resetEmail").val())) {
+            $("#resetEmailText").html(" ");
+        }
+    });
+
     // login panel - email checker
     $('#logEmail').focusout(function (e) {
         if (!validateEmail($("#logEmail").val())) {
@@ -72,10 +111,14 @@ $(document).ready(function () {
         }
     });
 
+
+    // unlocking submit buttons in forms
     $('input').focusout(function (e) {
-        $('#logRegSubmit').attr("disabled", false);
+        $('#logRegSubmit').add('#resetConfirm').attr("disabled", false);
     });
 
+
+    // block registration form if something is wrong
     $('#logRegSubmit').hover(function () {
         if ($('#logRegPasswordText').html() === 'More Characters') {
             $('#logRegSubmit').attr("disabled", true);
@@ -92,7 +135,16 @@ $(document).ready(function () {
         }
     });
 
-    // signIn form
+    // block reset form if something is wrong
+    $('#resetConfirm').hover(function () {
+        if ($('#resetPasswordText').html() === 'More Characters') {
+            $('#resetConfirm').attr("disabled", true);
+        } else if ($("#resetRepeatPasswordText").html() === "Repeated password is incorrect!") {
+            $('#resetConfirm').attr("disabled", true);
+        }
+    });
+
+    // signIn form message clearing
     $('#logPassword').keyup(function (e) {
         $('#logPasswordText').fadeOut(600, function () {
             $('#logPasswordText').html('');
@@ -100,8 +152,8 @@ $(document).ready(function () {
 
     });
 
+    //  GET cleaning after refreshing
+    if (performance.navigation.type == 1) {
+        window.location.href = "index.php?main";
+    }
 });
-
-
-
-// $('#logRegSubmit').attr("disabled", false);

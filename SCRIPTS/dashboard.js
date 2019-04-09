@@ -20,4 +20,33 @@ $(document).ready(function () {
         alert("Signed out!");
     });
 
+    //  GET cleaning after refreshing
+    if (performance.navigation.type == 1) {
+        window.location.href = "dashboard.php?main";
+    }
+
+    // GET methods
+    $("#dashboardHomeNav").click(function () {
+        window.history.pushState("", "", '?main');
+    });
+    // GET methods
+    $("#dashboardProjectsNav").click(function () {
+        window.history.pushState("", "", '?projects');
+    });
+    // GET methods
+    $("#dashboardSQLNav").click(function () {
+        window.history.pushState("", "", '?SQLpanel');
+    });
+    // GET methods
+    $("#dashboardSettingsNav").click(function () {
+        window.history.pushState("", "", '?settings');
+    });
+    // GET methods
+    $("#dashboardTeamNav").click(function () {
+        window.history.pushState("", "", '?team');
+    });
+    $("#signOut").click(function () {
+        window.history.pushState("", "", '?signed_out');
+    });
+
 });

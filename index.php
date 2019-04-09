@@ -168,7 +168,7 @@
                         <div class="container">
                             <div class="form-group">
                                 <label for="logEmail">Email:</label>
-                                <input type="text" class="form-control" name="logEmail" autocomplete="off" placeholder="Email"
+                                <input type="email" class="form-control" name="logEmail" autocomplete="off" placeholder="Email"
                                     id="logEmail" required>
                                 <div id="logEmailText"></div>
                             </div>
@@ -211,10 +211,9 @@
                         <div class="container">
                             <div class="form-group">
                                 <label for="reset">Email:</label>
-                                <input type="text" class="form-control" name="resetEmail" autocomplete="off" placeholder="Email"
-                                    id="reset" required>
-                                <div id="logEmailText"></div>
-                                <p class="leads resetEmailText"></p>
+                                <input type="email" class="form-control" name="resetEmail" autocomplete="off" placeholder="Email"
+                                    id="resetEmail" required>
+                                <div id="resetEmailText"></div>
                             </div>
                         </div>
                 </div>
@@ -248,13 +247,24 @@
                                 <label for="reset_code">Reset code:</label>
                                 <input type="text" class="form-control" name="reset_code" autocomplete="off" placeholder="Reset code"
                                     required>
-                                <div id="logEmailText"></div>
-                                <p class="leads resetCodeText"></p>
+                                <div id="resetCodeInfo"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="resetPassword">Reset code:</label>
+                                <input type="password" id="resetPassword" class="form-control" name="resetPassword" autocomplete="off" placeholder="New password"
+                                    required>
+                                <div id="resetPasswordText"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="repeatResetPassword">Reset code:</label>
+                                <input type="password" id="repeatResetPassword" class="form-control" name="repeatResetPassword" autocomplete="off" placeholder="Repeat new password"
+                                    required>
+                                <div id="resetRepeatPasswordText"></div>
                             </div>
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="resetButton" class="btn btn-warning">
+                    <button type="submit" id="resetConfirm" class="btn btn-warning">
                         Reset
                     </button>
                     </form>
@@ -265,8 +275,6 @@
   
 </div>
 
-    <!-- external scripts -->
-    <script src="SCRIPTS/logpanel.js"></script>
 
     <?php
         //register form 
@@ -291,9 +299,35 @@
             echo("<script>$('#insertReset').modal('show');</script>");
             session_start();
         }
+        else if (isset($_GET['reset']) && $_GET['reset'] == 0) {
+            
+            echo("<script>$('#reset').modal('show');</script>");
+            print("<script>$(document).ready(function(){\$('#resetEmailText').css('color','red');});</script>");
+            print("<script>$(document).ready(function(){\$('#resetEmailText').html('This email don\'t exist in database!');});</script>");
+
+        }
+
+        // reset password modal message - wrong code
+        if (isset($_GET['reset_failed'])) {
+ 
+           echo("<script>$('#insertReset').modal('show');</script>");
+           print("<script>$(document).ready(function(){\$('#resetCodeInfo').css('color','red');});</script>");
+           print("<script>$(document).ready(function(){\$('#resetCodeInfo').html('Wrong code!');});</script>");
+
+        }
+
         
+        // reset password modal message - success
+        else if (isset($_GET['reset_successfully'])) {
+
+            echo("<script>alert('Your password was succesfully reseted!');</script>");
+ 
+        }
+
     ?>
 
+    <!-- external scripts -->
+    <script src="SCRIPTS/logpanel.js"></script>
 </body>
 
 </html>
