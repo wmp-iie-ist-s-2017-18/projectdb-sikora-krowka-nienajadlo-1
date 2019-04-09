@@ -19,6 +19,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+    <!-- php code -->
+    <?php
+
+        if (isset($_GET['reset']) && $_GET['reset'] == 1) {
+            echo("<script>$('#insertReset').modal('show');</script>");
+            session_start();
+        }
+        
+    ?>
+    
 </head>
 
 <body>
@@ -143,7 +153,7 @@
     </div>
 
     <!-- Log in panel -->
-    <div class="modal fade" id="logLogIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <div class="modal fade" id="logLogIn" tabindex="-1" role="dialog"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" id="logModal" role="document">
             <div class="modal-content">
@@ -170,19 +180,90 @@
                                 <div id="logLoader">Wrong email or password!</div>
                             </div>
                             <div class="form-group">
-                                <a class="forgetPass" href="#">Reset Password</a>
+                                <a class="forgetPass" data-toggle="modal" data-dismiss="modal" data-target="#reset" href="index.php?reset=1">Reset Password</a>
                             </div>
                         </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" id="logSignInButton" class="btn btn-primary">Sign in
+                    <button type="submit" id="logSignInButton" class="btn btn-primary">
+                        Sign in
                     </button>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>
+
+    <!-- RESET PASSWORD MODAL -->
+    <div class="modal fade" id="reset" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reset password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="resetForm" action="PHP/reset.php" method="post">
+                        <div class="container">
+                            <div class="form-group">
+                                <label for="reset">Email:</label>
+                                <input type="text" class="form-control" name="resetEmail" autocomplete="off" placeholder="Email"
+                                    id="reset" required>
+                                <div id="logEmailText"></div>
+                                <p class="leads resetEmailText"></p>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="resetButton" class="btn btn-success">
+                        Reset
+                    </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- insert reset code - modal -->
+
+    <div class="modal fade" id="insertReset" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reset password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="PHP/reset_code.php" method="post">
+                        <div class="container">
+                            <div class="form-group">
+                                <label for="reset_code">Reset code:</label>
+                                <input type="text" class="form-control" name="reset_code" autocomplete="off" placeholder="Reset code"
+                                    required>
+                                <div id="logEmailText"></div>
+                                <p class="leads resetCodeText"></p>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="resetButton" class="btn btn-warning">
+                        Reset
+                    </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+</div>
 
     <!-- external scripts -->
     <script src="SCRIPTS/logpanel.js"></script>
@@ -190,7 +271,7 @@
     <?php
         //register form 
         if (isset($_GET['register']) && $_GET['register'] == 1) {
-            echo("<script>alert('Succesfully registered!');</script>");
+            echo("<script>$(document).ready(function(){alert('Successfully registered!');});</script>");
         }
         else if(isset($_GET['register']) && $_GET['register'] == 0){
             echo("<script>$('#signUp').click();</script>"); 
@@ -198,12 +279,19 @@
         }
 
         //sign in form
-        if (isset($_GET['success']) && $_GET['success'] == 0) {
+        else if (isset($_GET['success']) && $_GET['success'] == 0) {
             echo("<script>$('#signIn').click();</script>");
             echo("<script>$('#logPasswordText').html('Wrong email or password!');</script>");
             echo("<script>$('#logPasswordText').css('color','red');</script>");
         }
 
+        // reset password modal showing
+        if (isset($_GET['reset']) && $_GET['reset'] == 1) {
+            
+            echo("<script>$('#insertReset').modal('show');</script>");
+            session_start();
+        }
+        
     ?>
 
 </body>
