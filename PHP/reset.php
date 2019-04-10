@@ -33,9 +33,13 @@
                 $_SESSION['reset_email'] = $reset_email;
                 // email gateway
                 $subject = "Password reset code.";
-                $messages= "Your password reset code: $reset_code";
+                $messages = "<h2 style='text-align:center'>Reset your password</h1></br>";
+                $messages .= "<h3 style='text-align:center'>Your reset code: <span style='color:orange; border: 1px solid orange; border-radius: 6px; display: inline-block; padding: 3px;'> $reset_code</span></h2>";
+                $messages .= "<h3 style='text-align:center'>If it was't you just ignore this message.</h3>";
+                $headers = "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             
-                if( mail($reset_email, $subject, $messages) ) {
+                if( mail($reset_email, $subject, $messages, $headers) ) {
                     header("Location:../index.php?reset=1");
                 } else {
                     header("Location:../index.php?reset=0");

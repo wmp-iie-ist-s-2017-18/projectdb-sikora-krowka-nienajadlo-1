@@ -21,22 +21,29 @@
       
         // email gateway
         $subject = "Activation code.";
-        $messages= "Hello! Your account was succesfully created. Here is your activation code: $activation_code";
+        $messages = "<h2 style='text-align:center'>Welcome!</h1></br>";
+        $messages .= "<h2 style='text-align:center'>Thank you for choosing our service!</h1></br>";
+        $messages .= "<h3 style='text-align:center'>Your activation code: <span style='color:green; border: 1px solid green; border-radius: 6px; display: inline-block; padding: 3px;'> $activation_code</span></h2>";
+        $messages .= "<h3 style='text-align:center'>If it was't you just ignore this message.</h3>";
+        echo "ok";
 
-        if( mail($email, $subject, $messages) ) {
-            header("Location:../index.php?register=1_email=1");
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+    
+        if( mail($email, $subject, $messages, $headers)){
+            header("Location:../index.php?register=1");
         } else {
-            header("Location:../index.php?register=0_email=0");
+            header("Location:../index.php?register=0");
         }
 
     }
         
     catch(PDOException $e)
         {
-            header("Location:../index.php?register=0");
             // print("Error!: " . $e->getMessage() . "<br/>");
             $connection_status = false;
             die();
+            header("Location:../index.php?register=0");
         }
         
 ?>
