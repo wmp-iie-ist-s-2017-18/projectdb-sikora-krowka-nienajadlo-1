@@ -88,15 +88,15 @@
                     <a id="dashboardTeamNav" class="nav-link" data-toggle="tab" href="#dashboardTeam">Team</a>
                 </li>
                 <li class="nav-item" id="adminSQL">
-                    <a id="dashboardSQLNav" class="nav-link" id="adminHrefSQL" data-toggle="tab"
+                    <a id="dashboardSQLNav" class="nav-link" sdata-toggle="tab"
                         href="#dashboardSQL">SQL</a>
                 </li>
                 <li class="nav-item">
                     <a id="dashboardSettingsNav" class="nav-link" data-toggle="tab" href="#dashboardSettings"><i
                             class="fas fa-user-cog"></i></a>
                 </li>
-                <li class="nav-item" id="signOut">
-                    <a class="nav-link" data-toggle="tab"><i class="fas fa-sign-out-alt"></i></a>
+                <li class="nav-item">
+                    <a id="signOut" class="nav-link" data-toggle="tab" href="#dashboardSettings"><i class="fas fa-sign-out-alt"></i></a>
                 </li>
             </ul>
         </div>
@@ -165,20 +165,25 @@
                                     <div class=" form-group">
                                         <label for="email">Email adress:</label>
                                         <input type="text" id="email" name="email" class="form-control" id="email"
-                                            placeholder="Your email adress." value="<?php echo $tresult[4]; ?>"
+                                            placeholder="Your email adress." value="<?php echo $tresult[3]; ?>"
                                             disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="position">Position:</label>
                                         <input type="text" id="position" name="position" class="form-control"
-                                            placeholder="Your position in company." value="<?php echo $tresult[6]; ?>"
+                                            placeholder="Your position in company." value="<?php echo $tresult[5]; ?>"
                                             required>
                                     </div>
                                     <div class="form-group">
                                         <label for="number">Telephone number:</label>
                                         <input type="text" name="number" class="form-control" id="number"
-                                            placeholder="Your telephone number." value="<?php echo $tresult[8]; ?>"
+                                            placeholder="Your telephone number." value="<?php echo $tresult[7]; ?>"
                                             required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="companyName">Company:</label>
+                                        <input type="text" name="companyName" class="form-control"
+                                            id="updateCompany" placeholder="Company name." value="<?php echo $tresult[9]; ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="updatePassword">Password:</label>

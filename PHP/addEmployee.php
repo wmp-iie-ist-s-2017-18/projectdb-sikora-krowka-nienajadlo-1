@@ -9,14 +9,13 @@
 
 
         $email = $_POST['logRegEmail'];
-        $login = $_POST['logRegLogin'];
         $password = $_POST['logRegPassword'];
         $activation_code = rand(1000000000, 9999999999);
 
         // password hashing with default salt
         $hash = password_hash($password, PASSWORD_BCRYPT);
 
-        $stmt = $conn->prepare("INSERT INTO `employee`(`login`, `password`, `email`, `activation_code`) VALUES ('$login','$hash','$email', '$activation_code')"); 
+        $stmt = $conn->prepare("INSERT INTO `employee`( `password`, `email`, `activation_code`) VALUES ('$hash','$email', '$activation_code')"); 
         $stmt->execute();
       
         // email gateway

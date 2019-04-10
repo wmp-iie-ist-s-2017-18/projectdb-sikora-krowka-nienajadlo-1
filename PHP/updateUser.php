@@ -8,7 +8,9 @@
     $lname = $_POST["lname"];
     $position = $_POST["position"];
     $tnumber = $_POST["number"];
+    $companyName = $_POST["companyName"];
     $updatingPassword = $_POST["updatePassword"];
+    
 
 
     // try to connect with database
@@ -32,16 +34,17 @@
             $usercheck->execute();
             $cresult = $usercheck->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
 
-            if(password_verify($updatingPassword, $cresult[5])){
+            if(password_verify($updatingPassword, $cresult[4])){
 
                 // database prepared statements
                 $update = $dbh->prepare("UPDATE `employee` SET `first_Name`=:fname, `last_Name`=:lname,
-                `position`=:position, `tel_number`=:tnumber  WHERE email=:email;");
+                `position`=:position, `tel_number`=:tnumber, `company_ID`=:company  WHERE email=:email;");
                 $update->bindParam(':lname', $lname);
                 $update->bindParam(':fname', $fname);
                 $update->bindParam(':position', $position);
                 $update->bindParam(':tnumber', $tnumber);
                 $update->bindParam(':email', $email);
+                $update->bindParam(':company',$companyName);
                 $update->execute();
 
                 header("Location:../SUBPAGES/dashboard.php?updated=1");
