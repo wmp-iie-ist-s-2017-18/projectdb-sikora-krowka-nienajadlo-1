@@ -23,12 +23,36 @@ catch (PDOException $e) {
 if($connection_status){
     try{
         // database prepared statements
-        $logIn = $dbh->prepare($SQL);
-        $logIn->execute();
+        $stmt = $dbh->prepare($SQL);
+        $stmt->execute();
+        $resultTable ="";
+        $fields = array_keys($stmt->fetch(PDO::FETCH_ASSOC));
+        $resultTable .= '  <table class="table table-bordered"> <thead><tr>';
+        foreach ($fields as $field) {
+            $resultTable .= "<th>".$field."</th>";
+        }
+        $stmt = $dbh->prepare($SQL);
+        $stmt->execute();
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $resultTable .= '</tr></thead><tbody>';
+        foreach($stmt->fetchAll()as $k=>$v){
+            
+        $resultTable .= '<tr>';
+                    foreach($v as $col){
+                        $resultTable .= "<td>".$col."</td>";
+                    }
+                    $resultTable .= '</tr>';
+                }
+                $resultTable .= '</tbody>';
+                $resultTable .= '</table>';
+                session_start();
+                $_SESSION['resultTable'] = $resultTable;
+                echo $resultTable;
         print("<br> Query executed!");
 
         header("Location: ../SUBPAGES/dashboard.php?sql=1");
     }
+
     catch(PDOException $e){
         // var_dump($e->getMessage());
         header("Location: ../SUBPAGES/dashboard.php?sql=0");

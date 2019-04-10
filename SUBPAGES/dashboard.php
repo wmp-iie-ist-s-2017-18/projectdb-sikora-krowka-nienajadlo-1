@@ -88,7 +88,7 @@
                     <a id="dashboardTeamNav" class="nav-link" data-toggle="tab" href="#dashboardTeam">Team</a>
                 </li>
                 <li class="nav-item" id="adminSQL">
-                    <a id="dashboardSQLNav" class="nav-link" id="adminHrefSQL" data-toggle="tab"
+                    <a id="dashboardSQLNav" class="nav-link" data-toggle="tab"
                         href="#dashboardSQL">SQL</a>
                 </li>
                 <li class="nav-item">
@@ -119,6 +119,7 @@
                     <div class="col-3 col-lg-2 ">
                         <nav class="navbar bg-ligh navbar-light projectsNav">
                             <h6>Select Project:</h1>
+                                <br>
                                 <ul class="navbar-nav nav" role="tablist">
                                     <?php include '../PHP/showProjects.php' ?>
                                 </ul>
@@ -197,6 +198,15 @@
                 </div>
             </div>
             <div id="dashboardSQL" class="container tab-pane fade">
+                <div class="container resultContainer scrollbar-primary">
+                    <?php 
+                    if (isset($_GET['sql']) && $_GET['sql'] == 1) {
+                        echo '<script>
+                        $("#dashboardSQLNav").click(); </script>';
+                        echo($_SESSION['resultTable']);
+                    }
+                    ?>
+                </div>
                 <form action="../PHP/adminSQL.php" method="get">
                     <div class="form-group">
 
@@ -222,21 +232,22 @@
     <?php
         //register form 
         if (isset($_GET['sql']) && $_GET['sql'] == 0) {
-            echo("<script>$('#adminHrefSQL').click();</script>");
+            echo("<script>$('#dashboardSQLNav').click();</script>");
             echo("<script>$('#SQLComandLine').css('border', '1px solid red');</script>");
         }
 
         else if (isset($_GET['sql']) && $_GET['sql'] == 1) {
-            echo("<script>$('#adminHrefSQL').click();</script>");
+            echo("<script>$('#dashboardSQLNav').click();</script>");
             echo("<script>$('#SQLComandLine').css('border', '1px solid green');</script>");
         }
 
         if (!isset($_GET['sql'])) {
-            echo("<script>$('#adminHrefSQL').click();</script>");
-            echo("<script>$('#SQLComandLine').css('border', '1px solid royalblue');</script>");
+            echo("<script>$('#SQLComandLine').css('border', '1px solid royalblue');
+                $('.resultContainer').css('display', 'none');
+            </script>");
         }
         else if(isset($_GET['sql']) && $_GET['sql'] == 1){
-            echo("<script>$('#adminHrefSQL').click();</script>"); 
+            echo("<script>$('#dashboardSQLNav').click();</script>"); 
         }
         
         if (isset($_GET['updated']) && $_GET['updated'] == 1) {
