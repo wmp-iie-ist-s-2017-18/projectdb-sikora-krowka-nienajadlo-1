@@ -87,9 +87,14 @@
                 <li class="nav-item">
                     <a id="dashboardTeamNav" class="nav-link" data-toggle="tab" href="#dashboardTeam">Team</a>
                 </li>
-                <li class="nav-item" id="adminSQL">
-                    <a id="dashboardSQLNav" class="nav-link" data-toggle="tab" href="#dashboardSQL">SQL</a>
-                </li>
+                <?php
+                    if($_SESSION['position'] == 'Admin'){
+                        echo'<li class="nav-item" id="adminSQL">
+                        <a id="dashboardSQLNav" class="nav-link" data-toggle="tab" href="#dashboardSQL">SQL</a>
+                    </li>';
+                    }
+                ?>
+                
                 <li class="nav-item">
                     <a id="dashboardSettingsNav" class="nav-link" data-toggle="tab" href="#dashboardSettings"><i
                             class="fas fa-user-cog"></i></a>
@@ -202,30 +207,37 @@
                     </div>
                 </div>
             </div>
-            <div id="dashboardSQL" class="container tab-pane fade">
-                <div class="container resultContainer scrollbar-primary">
-                    <?php 
-                    if (isset($_GET['sql']) && $_GET['sql'] == 1) {
-                        echo '<script>
-                        $("#dashboardSQLNav").click(); </script>';
-                        echo($_SESSION['resultTable']);
+            
+            <?php
+                    if($_SESSION['position'] == 'Admin'){
+                        echo'<div id="dashboardSQL" class="container tab-pane fade">
+                        <div class="container resultContainer scrollbar-primary">';
+                        
+                        if (isset($_GET['sql']) && $_GET['sql'] == 1) {
+                            echo '<script>
+                            $("#dashboardSQLNav").click(); </script>';
+                            echo($_SESSION['resultTable']);
+                        }
+
+                        echo'</div>
+                        <form action="../PHP/adminSQL.php" method="get">
+                            <div class="form-group">
+        
+                                <label for="SQLComandLine">
+                                    <p class="lead">SQL Command line</p>
+                                </label>
+                                <textarea type="text" class="form-control" rows="5" id="SQLComandLine"
+                                    name="SQLComandLine"></textarea>
+                                <!-- <input type="text" class="form-control" name="SQLComandLine" placeholder="Enter username"> -->
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ready</button>
+                        </form>
+        
+                    </div>';
+
                     }
-                    ?>
-                </div>
-                <form action="../PHP/adminSQL.php" method="get">
-                    <div class="form-group">
-
-                        <label for="SQLComandLine">
-                            <p class="lead">SQL Command line</p>
-                        </label>
-                        <textarea type="text" class="form-control" rows="5" id="SQLComandLine"
-                            name="SQLComandLine"></textarea>
-                        <!-- <input type="text" class="form-control" name="SQLComandLine" placeholder="Enter username"> -->
-                    </div>
-                    <button type="submit" class="btn btn-primary">Ready</button>
-                </form>
-
-            </div>
+                ?>
+            
         </div>
     </main>
 
