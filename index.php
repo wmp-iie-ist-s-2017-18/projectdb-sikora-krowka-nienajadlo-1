@@ -124,12 +124,6 @@
                                 <div id="logRegEmailText"></div>
                             </div>
                             <div class="form-group">
-                                <label for="logRegLogin">Login:</label>
-                                <input type="text" name="logRegLogin" autocomplete="off" class="form-control" placeholder="Login"
-                                    id="logRegLogin" required>
-                                <div id="logRegLoginText"></div>
-                            </div>
-                            <div class="form-group">
                                 <label for="logRegPassword">Password:</label>
                                 <input type="password" name="logRegPassword" autocomplete="off" class="form-control" placeholder="Password"
                                     id="logRegPassword" required>
