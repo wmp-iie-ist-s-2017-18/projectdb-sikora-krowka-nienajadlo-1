@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 09 Kwi 2019, 22:06
+-- Czas generowania: 10 Kwi 2019, 23:26
 -- Wersja serwera: 10.1.38-MariaDB
 -- Wersja PHP: 5.6.40
 
@@ -25,6 +25,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `company`
+--
+
+CREATE TABLE `company` (
+  `company_ID` int(11) NOT NULL,
+  `company_name` varchar(1000) COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `employee`
 --
 
@@ -32,21 +43,33 @@ CREATE TABLE `employee` (
   `employee_ID` int(11) NOT NULL,
   `first_Name` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `last_Name` varchar(50) COLLATE utf8_polish_ci NOT NULL,
-  `login` varchar(50) COLLATE utf8_polish_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_polish_ci NOT NULL,
   `password` varchar(100) COLLATE utf8_polish_ci NOT NULL,
   `position` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `activated` tinyint(1) NOT NULL DEFAULT '0',
-  `tel_number` int(12) NOT NULL,
-  `activation_code` int(10) NOT NULL
+  `tel_number` int(9) DEFAULT NULL,
+  `activation_code` int(10) NOT NULL,
+  `company_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `employee`
 --
 
-INSERT INTO `employee` (`employee_ID`, `first_Name`, `last_Name`, `login`, `email`, `password`, `position`, `activated`, `tel_number`, `activation_code`) VALUES
-(61, 'Dawid', 'Nienajadło', 'dawid12', 'dawidnienajadlo96@gmail.com', '$2y$10$DZfeyCVoUlVuitcbJY6EfesiPVxC0497wDWFNmfNngstlBiX4FXL.', 'Admin', 1, 111222333, 1050682522);
+INSERT INTO `employee` (`employee_ID`, `first_Name`, `last_Name`, `email`, `password`, `position`, `activated`, `tel_number`, `activation_code`, `company_ID`) VALUES
+(65, 'Dawid', 'Nienajadło', 'dawidnienajadlo96@gmail.com', '$2y$10$So7AInaIBGQ9/qAYIx.j9.Y0FQDVPA9cRpus8YXWNfLxM8AWGM6rm', 'Admin', 1, 516804066, 1337608171, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `news`
+--
+
+CREATE TABLE `news` (
+  `news_ID` int(11) NOT NULL,
+  `news_content` mediumtext COLLATE utf8_polish_ci NOT NULL,
+  `company_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
 
@@ -92,12 +115,25 @@ CREATE TABLE `team_employee` (
 --
 
 --
+-- Indeksy dla tabeli `company`
+--
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`company_ID`);
+
+--
 -- Indeksy dla tabeli `employee`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`employee_ID`),
-  ADD UNIQUE KEY `login` (`login`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `company_ID` (`company_ID`);
+
+--
+-- Indeksy dla tabeli `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`news_ID`),
+  ADD KEY `company_ID` (`company_ID`);
 
 --
 -- Indeksy dla tabeli `project`
@@ -126,10 +162,22 @@ ALTER TABLE `team_employee`
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `company`
+--
+ALTER TABLE `company`
+  MODIFY `company_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT dla tabeli `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+
+--
+-- AUTO_INCREMENT dla tabeli `news`
+--
+ALTER TABLE `news`
+  MODIFY `news_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `project`
@@ -146,6 +194,18 @@ ALTER TABLE `team`
 --
 -- Ograniczenia dla zrzutów tabel
 --
+
+--
+-- Ograniczenia dla tabeli `employee`
+--
+ALTER TABLE `employee`
+  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`company_ID`) REFERENCES `company` (`company_ID`) ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `news`
+--
+ALTER TABLE `news`
+  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`company_ID`) REFERENCES `company` (`company_ID`);
 
 --
 -- Ograniczenia dla tabeli `project`
