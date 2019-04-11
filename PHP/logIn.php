@@ -52,7 +52,7 @@ if($connection_status){
                 $_SESSION['fname'] = $result[1];
                 $_SESSION['lname'] = $result[2];
                 $_SESSION['email'] = $result[3];
-                $_SESSION['position'] = $result[6];
+                $_SESSION['position'] = $result[5];
 
                 
 

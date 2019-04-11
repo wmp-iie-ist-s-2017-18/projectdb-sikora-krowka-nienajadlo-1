@@ -87,18 +87,21 @@
                 <li class="nav-item">
                     <a id="dashboardTeamNav" class="nav-link" data-toggle="tab" href="#dashboardTeam">Team</a>
                 </li>
-                <li class="nav-item" id="adminSQL">
-
-                    <a id="dashboardSQLNav" class="nav-link" data-toggle="tab"
-
-                        href="#dashboardSQL">SQL</a>
-                </li>
+                <?php
+                    if($_SESSION['position'] == 'Admin'){
+                        echo'<li class="nav-item" id="adminSQL">
+                        <a id="dashboardSQLNav" class="nav-link" data-toggle="tab" href="#dashboardSQL">SQL</a>
+                    </li>';
+                    }
+                ?>
+                
                 <li class="nav-item">
                     <a id="dashboardSettingsNav" class="nav-link" data-toggle="tab" href="#dashboardSettings"><i
                             class="fas fa-user-cog"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a id="signOut" class="nav-link" data-toggle="tab" href="#dashboardSettings"><i class="fas fa-sign-out-alt"></i></a>
+                    <a id="signOut" class="nav-link" data-toggle="tab" href="#dashboardSettings"><i
+                            class="fas fa-sign-out-alt"></i></a>
                 </li>
             </ul>
         </div>
@@ -121,7 +124,7 @@
                     <div class="col-3 col-lg-2 ">
                         <nav class="navbar bg-ligh navbar-light projectsNav">
                             <h6>Select Project:</h1>
-                                <br>
+                                </br>
                                 <ul class="navbar-nav nav" role="tablist">
                                     <?php include '../PHP/showProjects.php' ?>
                                 </ul>
@@ -185,8 +188,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="companyName">Company:</label>
-                                        <input type="text" name="companyName" class="form-control"
-                                            id="updateCompany" placeholder="Company name." value="<?php echo $tresult[9]; ?>" required>
+                                        <input type="text" name="companyName" class="form-control" id="updateCompany"
+                                            placeholder="Company name." value="<?php echo $tresult[9]; ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="updatePassword">Password:</label>
@@ -204,30 +207,37 @@
                     </div>
                 </div>
             </div>
-            <div id="dashboardSQL" class="container tab-pane fade">
-                <div class="container resultContainer scrollbar-primary">
-                    <?php 
-                    if (isset($_GET['sql']) && $_GET['sql'] == 1) {
-                        echo '<script>
-                        $("#dashboardSQLNav").click(); </script>';
-                        echo($_SESSION['resultTable']);
+            
+            <?php
+                    if($_SESSION['position'] == 'Admin'){
+                        echo'<div id="dashboardSQL" class="container tab-pane fade">
+                        <div class="container resultContainer scrollbar-primary">';
+                        
+                        if (isset($_GET['sql']) && $_GET['sql'] == 1) {
+                            echo '<script>
+                            $("#dashboardSQLNav").click(); </script>';
+                            echo($_SESSION['resultTable']);
+                        }
+
+                        echo'</div>
+                        <form action="../PHP/adminSQL.php" method="get">
+                            <div class="form-group">
+        
+                                <label for="SQLComandLine">
+                                    <p class="lead">SQL Command line</p>
+                                </label>
+                                <textarea type="text" class="form-control" rows="5" id="SQLComandLine"
+                                    name="SQLComandLine"></textarea>
+                                <!-- <input type="text" class="form-control" name="SQLComandLine" placeholder="Enter username"> -->
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ready</button>
+                        </form>
+        
+                    </div>';
+
                     }
-                    ?>
-                </div>
-                <form action="../PHP/adminSQL.php" method="get">
-                    <div class="form-group">
-
-                        <label for="SQLComandLine">
-                            <p class="lead">SQL Command line</p>
-                        </label>
-                        <textarea type="text" class="form-control" rows="5" id="SQLComandLine"
-                            name="SQLComandLine"></textarea>
-                        <!-- <input type="text" class="form-control" name="SQLComandLine" placeholder="Enter username"> -->
-                    </div>
-                    <button type="submit" class="btn btn-primary">Ready</button>
-                </form>
-
-            </div>
+                ?>
+            
         </div>
     </main>
 
