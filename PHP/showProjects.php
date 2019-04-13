@@ -21,7 +21,7 @@ if($connection_status){
         $employeeArray = array();
         
         // set the resulting array to associative
-        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
         foreach($stmt->fetchAll()as $k=>$v) {
             echo '<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#'.preg_replace('/\s+/', '', $v['name']).'">'.$v['name'].'</a></li>';
             
