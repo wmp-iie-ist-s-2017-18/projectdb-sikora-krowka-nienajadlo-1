@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Kwi 2019, 23:26
+-- Czas generowania: 13 Kwi 2019, 20:05
 -- Wersja serwera: 10.1.38-MariaDB
--- Wersja PHP: 5.6.40
+-- Wersja PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,6 +33,13 @@ CREATE TABLE `company` (
   `company_name` varchar(1000) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+--
+-- Zrzut danych tabeli `company`
+--
+
+INSERT INTO `company` (`company_ID`, `company_name`) VALUES
+(1, 'Company');
+
 -- --------------------------------------------------------
 
 --
@@ -57,7 +64,8 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`employee_ID`, `first_Name`, `last_Name`, `email`, `password`, `position`, `activated`, `tel_number`, `activation_code`, `company_ID`) VALUES
-(65, 'Dawid', 'Nienajadło', 'dawidnienajadlo96@gmail.com', '$2y$10$So7AInaIBGQ9/qAYIx.j9.Y0FQDVPA9cRpus8YXWNfLxM8AWGM6rm', 'Admin', 1, 516804066, 1337608171, NULL);
+(65, 'Dawid', 'Nienajadło', 'dawidnienajadlo96@gmail.com', '$2y$10$So7AInaIBGQ9/qAYIx.j9.Y0FQDVPA9cRpus8YXWNfLxM8AWGM6rm', 'Admin', 1, 516804066, 1337608171, NULL),
+(66, 'Adam', 'Krówka', 'adamkrowka108@gmail.com', '$2y$10$NAwNjF7nPyiZM26uUI1zCO8mf3.ZMhHAsDgVcwv78XGn0NYdA63hC', 'Programmist', 1, 537399743, 2147483647, 1);
 
 -- --------------------------------------------------------
 
@@ -87,6 +95,41 @@ CREATE TABLE `project` (
   `description` mediumtext COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+--
+-- Zrzut danych tabeli `project`
+--
+
+INSERT INTO `project` (`project_ID`, `name`, `state`, `start`, `finish`, `team_ID`, `description`) VALUES
+(1, 'First Project', 'started', '2019-04-02', '2019-04-30', 1, 'Lorem ipsum '),
+(2, 'NextProject', 'started', '2019-04-02', '2019-04-30', 2, 'sadas');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `projectchat`
+--
+
+CREATE TABLE `projectchat` (
+  `Chat_ID` int(11) NOT NULL,
+  `project_ID` int(11) NOT NULL,
+  `employee_ID` int(11) NOT NULL,
+  `message` varchar(255) COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `projectchat`
+--
+
+INSERT INTO `projectchat` (`Chat_ID`, `project_ID`, `employee_ID`, `message`) VALUES
+(1, 1, 66, 'hi my name is Adam'),
+(2, 1, 65, 'Hi Adam I\'m David'),
+(3, 1, 66, 'cvv'),
+(5, 1, 66, 'co tam :D'),
+(6, 1, 65, 'a nic ciekawego'),
+(7, 2, 66, 'kuraki'),
+(8, 2, 66, 'nikogo tutaj nie ma :('),
+(9, 2, 66, 'bo jestem taki sam jak palec albo coś tam hahah');
+
 -- --------------------------------------------------------
 
 --
@@ -99,6 +142,14 @@ CREATE TABLE `team` (
   `leader_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+--
+-- Zrzut danych tabeli `team`
+--
+
+INSERT INTO `team` (`team_ID`, `name`, `leader_ID`) VALUES
+(1, 'FirstTeam', 66),
+(2, 'Second Team', 65);
+
 -- --------------------------------------------------------
 
 --
@@ -109,6 +160,15 @@ CREATE TABLE `team_employee` (
   `employee_ID` int(11) NOT NULL,
   `team_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `team_employee`
+--
+
+INSERT INTO `team_employee` (`employee_ID`, `team_ID`) VALUES
+(66, 1),
+(65, 1),
+(66, 2);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -144,6 +204,14 @@ ALTER TABLE `project`
   ADD KEY `team_ID` (`team_ID`);
 
 --
+-- Indeksy dla tabeli `projectchat`
+--
+ALTER TABLE `projectchat`
+  ADD PRIMARY KEY (`Chat_ID`),
+  ADD KEY `employee_ID` (`employee_ID`),
+  ADD KEY `project_ID` (`project_ID`);
+
+--
 -- Indeksy dla tabeli `team`
 --
 ALTER TABLE `team`
@@ -165,13 +233,13 @@ ALTER TABLE `team_employee`
 -- AUTO_INCREMENT dla tabeli `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `company_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT dla tabeli `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT dla tabeli `news`
@@ -183,13 +251,19 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT dla tabeli `project`
 --
 ALTER TABLE `project`
-  MODIFY `project_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `project_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT dla tabeli `projectchat`
+--
+ALTER TABLE `projectchat`
+  MODIFY `Chat_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT dla tabeli `team`
 --
 ALTER TABLE `team`
-  MODIFY `team_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `team_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -212,6 +286,13 @@ ALTER TABLE `news`
 --
 ALTER TABLE `project`
   ADD CONSTRAINT `project_ibfk_1` FOREIGN KEY (`team_ID`) REFERENCES `team` (`team_ID`) ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `projectchat`
+--
+ALTER TABLE `projectchat`
+  ADD CONSTRAINT `projectchat_ibfk_1` FOREIGN KEY (`employee_ID`) REFERENCES `employee` (`employee_ID`),
+  ADD CONSTRAINT `projectchat_ibfk_2` FOREIGN KEY (`project_ID`) REFERENCES `project` (`project_ID`);
 
 --
 -- Ograniczenia dla tabeli `team`
