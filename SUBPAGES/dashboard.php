@@ -124,7 +124,6 @@
                     <div class="col-3 col-lg-2 ">
                         <nav class="navbar bg-ligh navbar-light projectsNav">
                             <h6>Select Project:</h1>
-                                </br>
                                 <ul class="navbar-nav nav" role="tablist">
                                     <?php include '../PHP/showProjects.php' ?>
                                 </ul>
@@ -133,6 +132,7 @@
                     </div>
                     <div class="col-9 col-lg-10 tab-content">
                         <?php include '../PHP/projectInfo.php' ?>
+                        
                     </div>
                 </div>
             </div>
