@@ -24,14 +24,11 @@
             user-select: none
         a 
             user-select: none // not working
-
-            #adminSQL
-            // display: none
-
         
 .resultContainer
     max-height: 40vh
     overflow: scroll        
+
 @media screen and (max-width: 750px)    
     .dashboardTitle .container .display-4
         font-size: 1.5rem
@@ -53,7 +50,6 @@
 .dashboardFooter
     z-index: 5
     padding: 5px 0
-    clear: both
     // position: fixed
     // bottom: 0
     // left: 0
@@ -91,3 +87,19 @@
     border-radius: 10px
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1)
     background-color: #4285F4
+
+
+select
+    width: 100%
+    color: #495057
+    border: 1px solid #ced4da
+    border-radius: 4px
+    padding: 6px
+    font-size: 1rem
+    cursor: pointer
+
+    &:focus
+        border: 1px solid royalblue
+
+    option
+        cursor: pointer

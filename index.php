@@ -21,13 +21,7 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
     <!-- php code -->
-    <?php
-        if (isset($_GET['reset']) && $_GET['reset'] == 1) {
-            echo("<script>$('#insertReset').modal('show');</script>");
-            session_start();
-        }
-        
-    ?>
+
     
 </head>
 

@@ -25,11 +25,10 @@
     <!-- php scripts -->
     <?php
         error_reporting(E_ERROR | E_PARSE);
-        session_start();
-
         include '../PHP/connection.php';
         session_start();
         $connection_status = false;
+        // $tresult[9]; -- company_ID
     
         // try to connect with database
         try {
@@ -50,15 +49,25 @@
                 $check = $dbh->prepare("SELECT * FROM employee WHERE email = :log_email;");
                 $check->bindParam(':log_email', $_SESSION['email']);
                 $check->execute();
-    
                 $tresult = $check->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
- 
+
+                $check_company = $dbh->prepare("SELECT company_name FROM company WHERE company_ID = :company_ID;");
+                $check_company->bindParam(':company_ID', $tresult[9]);
+                $check_company->execute();
+                $company_result = $check_company->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
+
+                $_SESSION['company_id'] = $tresult[9];
+                $_SESSION['company_name'] = $company_result[0];
+                $_SESSION['id'] = $tresult[0];
+
             }
             catch(PDOException $e){
-                print("Can't execute this query!");
+                // print("Can't execute this query!");
             }
         }
- 
+    
+
+
     ?>
 
 </head>
@@ -151,7 +160,6 @@
                     </div>
                     <div class="col-9 col-lg-10 tab-content">
                         <?php include '../PHP/teamInfo.php' ?>
-
                     </div>
                 </div>
             </div>
@@ -185,9 +193,29 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="position">Position:</label>
-                                        <input type="text" id="position" name="position" class="form-control"
-                                            placeholder="Your position in company." value="<?php echo $tresult[5]; ?>"
-                                            required>
+                                            <?php               
+                                                if($_SESSION['position'] == 'Admin'){
+                                                    print('<select name="position" class="form-control" id="updatePosition" disabled>');
+                                                        print('<option selected>Admin</option>');
+                                                    print('</select>');
+                                                }
+                                                else{
+                                                    print('<select name="position" id="updatePosition" required>');
+                                                        print('<option value="" disabled selected>Select your position in company</option>');
+                                                        print('<option value="Front-End Developer">Front-End Developer</option>');
+                                                        print('<option value="Back-End Developer">Back-End Developer</option>');
+                                                        print('<option value="Full-Stack Developer">Full-Stack Developer</option>');
+                                                        print('<option value="Graphic Desinger">Graphic Desinger</option>');
+                                                        print('<option value="UX Specialist">UX Specialist</option>');
+                                                        print('<option value="Project Leader/Planner">Project Leader/Planner</option>');
+                                                        print('<option value="Software Tester">Software Tester</option>');
+                                                        print('<option value="Technical Consultant">Technical Consultant</option>');
+                                                        print('<option value="Hardware engineer">Hardware Engineer</option>');
+                                                        print('<option value="Problem Manager">Problem Manager</option>');
+                                                        
+                                                    print('</select>');
+                                                }
+                                            ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="number">Telephone number:</label>
@@ -195,11 +223,16 @@
                                             placeholder="Your telephone number." value="<?php echo $tresult[7]; ?>"
                                             required>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="companyName">Company:</label>
-                                        <input type="text" name="companyName" class="form-control" id="updateCompany"
-                                            placeholder="Company name." value="<?php echo $tresult[9]; ?>" required>
-                                    </div>
+                                    <?php               
+                                        if($_SESSION['position'] != 'Admin'){
+                                                    print('<div class="form-group" id="companyForm">');
+                                                        print('<label for="companyName">Company:</label>');
+                                                        print('<select name="companyName" id="updateCompany" required>');
+                                                        include '../PHP/showCompany.php';
+                                                        print('</select>');
+                                                    print('</div>');
+                                        }
+                                    ?>
                                     <div class="form-group">
                                         <label for="updatePassword">Password:</label>
                                         <input type="password" name="updatePassword" class="form-control"
@@ -289,6 +322,12 @@
     ?>
 
     <script src="../SCRIPTS/dashboard.js"></script>
+    <script>
+        if('<?php echo $tresult[5];?>' != ''){
+            $('option:contains("<?php echo $tresult[5];?>")').attr('selected', 'selected');
+            $('option:contains("<?php echo $_SESSION['company_name'];?>")').attr('selected', 'selected');
+        }
+    </script>
     <!-- <script src="../SCRIPTS/timer.js"></script> -->
 
 </body>
