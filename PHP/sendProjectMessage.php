@@ -17,11 +17,12 @@ catch (PDOException $e) {
 }
 
 if($connection_status){
+    $currentTeam = $_GET['currentTeamID'];
     try{
         $stmt = $dbh->prepare("INSERT INTO projectchat (team_ID, employee_ID, message) 
-        VALUES (".$_GET['currentTeamID'].",".$_SESSION['id'].",'".$projectMessage."')"); 
+        VALUES (".$currentTeam.",".$_SESSION['id'].",'".$projectMessage."')"); 
         $stmt->execute();
-        header("Location:../SUBPAGES/dashboard.php?sendmessage=".$_GET['currentTeamID']."");
+        header("Location:../SUBPAGES/dashboard.php?sendmessage=".$currentTeam."");
         
         }
     

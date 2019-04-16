@@ -336,4 +336,20 @@ select:focus {
 select option {
   cursor: pointer;
 }
+
+.chatField {
+  max-height: 40vh !important;
+  overflow: scroll;
+}
+
+.chatField::-webkit-scrollbar {
+  width: 12px;
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.chatField::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #343a40 !important;
+}
 /*# sourceMappingURL=style.css.map */

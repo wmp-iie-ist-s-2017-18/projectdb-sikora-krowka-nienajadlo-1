@@ -321,6 +321,13 @@
             echo("<script>$('#upPasswordText').css('color', 'red');</script>");
             echo("<script>$('#upPasswordText').fadeIn(900);</script>");
         }
+
+        if (isset($_GET['sendmessage'])) {
+            echo("<script>$('#dashboardTeamNav').click();</script>");
+            echo("<script>$('#teamLink".$_GET['sendmessage']."').click();</script>");
+        }
+        
+
     ?>
 
     <script src="../SCRIPTS/dashboard.js"></script>
