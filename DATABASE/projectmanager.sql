@@ -122,13 +122,7 @@ CREATE TABLE `projectchat` (
 
 INSERT INTO `projectchat` (`Chat_ID`, `project_ID`, `employee_ID`, `message`) VALUES
 (1, 1, 66, 'hi my name is Adam'),
-(2, 1, 65, 'Hi Adam I\'m David'),
-(3, 1, 66, 'cvv'),
-(5, 1, 66, 'co tam :D'),
-(6, 1, 65, 'a nic ciekawego'),
-(7, 2, 66, 'kuraki'),
-(8, 2, 66, 'nikogo tutaj nie ma :('),
-(9, 2, 66, 'bo jestem taki sam jak palec albo coś tam hahah');
+(2, 1, 65, 'Hi Adam I\'m David');
 
 -- --------------------------------------------------------
 

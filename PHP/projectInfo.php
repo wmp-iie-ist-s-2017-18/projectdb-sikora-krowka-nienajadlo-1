@@ -25,7 +25,7 @@ if($connection_status){
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         foreach($stmt->fetchAll()as $k=>$v) {
                         echo ' <div class="tab-pane container" id="'.preg_replace('/\s+/', '', $v['name']).'">
-                            <h4> '.$v['name'].'</h4>
+                            <h1 class="display-4"> '.$v['name'].'</h1>
                             <h6>'.$v['state'].'</h6>
                             <h6>'.$v['start'].'</h6>
                             <h6>'.$v['finish'].'</h6>

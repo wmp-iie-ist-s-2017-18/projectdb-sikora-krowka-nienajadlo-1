@@ -45,6 +45,8 @@
     
         if($connection_status){
             try{
+                $git  = $dbh->prepare("Call updateStates()");
+                $git ->execute();
                 // database prepared statements
                 $check = $dbh->prepare("SELECT * FROM employee WHERE email = :log_email;");
                 $check->bindParam(':log_email', $_SESSION['email']);
@@ -72,7 +74,7 @@
 
 </head>
 
-<body>
+<body class="scrollbar-primary">
     <!-- dashboard navigation -->
     <!-- A grey horizontal navbar that becomes vertical on small screens -->
     <nav class="dashNav navbar navbar-expand-md bg-dark navbar-dark">
@@ -193,7 +195,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="position">Position:</label>
-                                            <?php               
+                                        <?php               
                                                 if($_SESSION['position'] == 'Admin'){
                                                     print('<select name="position" class="form-control" id="updatePosition" disabled>');
                                                         print('<option selected>Admin</option>');
@@ -252,7 +254,7 @@
             <?php
                     if($_SESSION['position'] == 'Admin'){
                         echo'<div id="dashboardSQL" class="container tab-pane fade">
-                        <div class="container resultContainer scrollbar-primary">';
+                        <div class="container resultContainer">';
                         
                         if (isset($_GET['sql']) && $_GET['sql'] == 1) {
                             echo '<script>
@@ -318,11 +320,18 @@
             echo("<script>$('#upPasswordText').css('color', 'red');</script>");
             echo("<script>$('#upPasswordText').fadeIn(900);</script>");
         }
+
+        if (isset($_GET['sendmessage'])) {
+            echo("<script>$('#dashboardTeamNav').click();</script>");
+            echo("<script>$('#teamLink".$_GET['sendmessage']."').click();</script>");
+        }
+        
+
     ?>
 
     <script src="../SCRIPTS/dashboard.js"></script>
     <script>
-        if('<?php echo $tresult[5];?>' != ''){
+        if ('<?php echo $tresult[5];?>' != '') {
             $('option:contains("<?php echo $tresult[5];?>")').attr('selected', 'selected');
             $('option:contains("<?php echo $_SESSION['company_name'];?>")').attr('selected', 'selected');
         }
