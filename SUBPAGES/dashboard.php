@@ -212,8 +212,7 @@
                                                         print('<option value="Technical Consultant">Technical Consultant</option>');
                                                         print('<option value="Hardware engineer">Hardware Engineer</option>');
                                                         print('<option value="Problem Manager">Problem Manager</option>');
-                                                        
-                                                    print('</select>');
+                                                        print('</select>');
                                                 }
                                             ?>
                                     </div>
