@@ -27,14 +27,14 @@ if($connection_status){
         // set the resulting array to associative
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         foreach($stmt->fetchAll()as $k=>$v) {
-            // echo ' <div class="tab-pane container" id="team'.preg_replace('/\s+/', '', $v['name']).'">
             echo ' <div class="tab-pane container" id="team'.$v['team_ID'].'">
                             <h4> '.$v['name'].'</h4>
                             <h6> '.$v['LeaderFirst'].' '.$v['LeaderLast'].'</h6>
                             <div class="card">
-                            <div class="card-header">
+                            <div class="card-header" id="messageHead'.$v['team_ID'].'"  data-toggle="collapse" data-target="#collapse'.$v['team_ID'].'">
                             <h4 class="card-title">Team Chat</h4>
                             </div>
+                            <div class="tester  collapse " id="collapse'.$v['team_ID'].'">
                             <div class="card-body chatField">';
                             $stmtChat = $dbh->prepare("Select c.Chat_ID , c.message , e.first_Name  
                             FROM projectchat c ,employee e 
@@ -43,7 +43,7 @@ if($connection_status){
                             $stmtChat->execute();
                             
                             foreach($stmtChat->fetchAll()as $j=>$z) {
-                               echo '<p class="card-text">'.$z['first_Name'].': '.$z['message'].'</p>';
+                               echo '<p class="card-text"><h6>'.$z['first_Name'].':</h6>'.$z['message'].'</p>';
 
                             }
                             
@@ -51,11 +51,11 @@ if($connection_status){
                             </div>
                          <div class="card-footer">
                             <form class="form-inline" action="../PHP/sendProjectMessage.php?currentTeamID='.$v['team_ID'].'"  method="POST">
-                                <input type="text" class="form-control" placeholder="Enter messsage" name="messageText">
-                                <button type="submit" class="btn btn-primary">Send</button>
+                                <input type="text" class="form-control" placeholder="Enter messsage" name="messageText" autocomplete="off">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
                             </form>
                             
-                            </div>
+                            </div></div>
                             </div></div>';
         }
     }

@@ -276,7 +276,7 @@ a {
 
 .dashboardFooter {
   z-index: 5;
-  padding: 5px 0;
+  padding: 0.5vh 0;
   height: 5vh;
   background-color: #343A40;
   color: white;
@@ -338,8 +338,8 @@ select option {
 }
 
 .chatField {
-  max-height: 40vh !important;
   overflow: scroll;
+  max-height: 40vh !important;
 }
 
 .chatField::-webkit-scrollbar {
@@ -351,5 +351,33 @@ select option {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: #343a40 !important;
+}
+
+.card {
+  position: fixed;
+  bottom: 5vh;
+}
+
+.card .form-inline button {
+  margin-left: 10px;
+}
+
+@media screen and (min-width: 750px) {
+  .card {
+    right: 10vw;
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .card {
+    max-height: 80vh;
+    right: 0;
+    width: 100vw;
+    bottom: 0;
+  }
+  .card .form-inline .form-control {
+    width: 80%;
+  }
 }
 /*# sourceMappingURL=style.css.map */

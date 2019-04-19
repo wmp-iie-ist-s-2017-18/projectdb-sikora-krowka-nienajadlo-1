@@ -21,7 +21,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
     <!-- php scripts -->
     <?php
         error_reporting(E_ERROR | E_PARSE);
@@ -131,37 +130,41 @@
             </div>
 
             <div id="dashboardProjects" class="container tab-pane fade">
+                <div class="jumbotron jumbotron-fluid">
                 <div class="row projectsPage">
-                    <div class="col-3 col-lg-2 ">
-                        <nav class="navbar bg-ligh navbar-light projectsNav">
+                    <div class="col-12 col-sm-3 col-lg-2 ">
                             <h6>Select Project:</h6>
+                        <nav class="navbar bg-ligh navbar-light projectsNav">
                             <ul class="navbar-nav nav" role="tablist">
                                 <?php include '../PHP/showProjects.php' ?>
                             </ul>
 
                         </nav>
                     </div>
-                    <div class="col-9 col-lg-10 tab-content">
+                    <div class="col-12 col-sm-9 col-lg-10 tab-content">
                         <?php include '../PHP/projectInfo.php' ?>
 
                     </div>
+                </div>
                 </div>
             </div>
 
 
             <div id="dashboardTeam" class="container tab-pane fade">
-                <div class="row teamsPage">
-                    <div class="col-3 col-lg-2 ">
-                        <nav class="navbar bg-ligh navbar-light teamsNav">
-                            <h6>Select Project:</h6>
-                            <ul class="navbar-nav nav" role="tablist">
-                                <?php include '../PHP/showTeams.php' ?>
-                            </ul>
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="row teamsPage">
+                        <div class="col-12 col-sm-3 col-lg-2 ">
+                                <h6>Select Team:</h6>
+                            <nav class="navbar bg-ligh navbar-light teamsNav">
+                                <ul class="navbar-nav nav" role="tablist">
+                                    <?php include '../PHP/showTeams.php' ?>
+                                </ul>
 
-                        </nav>
-                    </div>
-                    <div class="col-9 col-lg-10 tab-content">
-                        <?php include '../PHP/teamInfo.php' ?>
+                            </nav>
+                        </div>
+                        <div id="teamInfo" class="col-12 col-sm-9 col-lg-10 tab-content">
+                            <?php include '../PHP/teamInfo.php' ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -324,6 +327,7 @@
         if (isset($_GET['sendmessage'])) {
             echo("<script>$('#dashboardTeamNav').click();</script>");
             echo("<script>$('#teamLink".$_GET['sendmessage']."').click();</script>");
+            echo("<script>$('#messageHead".$_GET['sendmessage']."').click();</script>");
         }
         
 

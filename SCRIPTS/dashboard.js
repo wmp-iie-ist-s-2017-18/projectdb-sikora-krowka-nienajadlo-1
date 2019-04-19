@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     // first login --- must fill empty fields
     if ($("#firstName").val() === "" || $("lastName").val() === "" || $("position").val() || $("number").val() === "") {
 
@@ -10,8 +9,6 @@ $(document).ready(function () {
         $("#dashboardSettingsNav").click();
         $("#dashboardHomeNav").add("#dashboardProjectsNav").add("#dashboardTeamNav").add("#adminSQL").hide();
     }
-
-
     // logout
     $("#signOut").click(function () {
         $(location).attr('href', '../PHP/session_destroy.php');
@@ -46,5 +43,6 @@ $(document).ready(function () {
     $("#signOut").click(function () {
         window.history.pushState("", "", '?signed_out');
     });
+
 
 });
