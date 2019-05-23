@@ -16,7 +16,7 @@ catch (PDOException $e) {
 
 if($connection_status){
     try{
-        $stmt = $dbh->prepare("SELECT t.name ,t.team_ID, 
+        $stmt = $dbh->prepare("SELECT t.name ,t.team_ID, t.leader_ID,
         (SELECT e.first_Name FROM employee e WHERE e.employee_ID=t.leader_ID) as LeaderFirst , 
         (SELECT e.last_Name FROM employee e WHERE e.employee_ID=t.leader_ID) as LeaderLast 
         FROM employee e, team t,team_employee te WHERE e.employee_ID =".$_SESSION['id']." 
@@ -28,14 +28,22 @@ if($connection_status){
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         foreach($stmt->fetchAll()as $k=>$v) {
             echo ' <div class="tab-pane container" id="team'.$v['team_ID'].'">
-                            <h4> '.$v['name'].'</h4>
-                            <h6> '.$v['LeaderFirst'].' '.$v['LeaderLast'].'</h6>
-                            <div class="card">
+                            <h4> '.$v['name'].'</h4>';
+                            if ($v['leader_ID'] == $_SESSION['id']) {
+                                echo '<h6> You are the leader of this team</h6>
+                                <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#addEmployeeModal">Add employee</button>';
+                            }
+                            else{
+                                echo '<h6>Leader:  '.$v['LeaderFirst'].' '.$v['LeaderLast'].'</h6>';
+                            }
+                           echo '<div class="card">
                             <div class="card-header" id="messageHead'.$v['team_ID'].'"  data-toggle="collapse" data-target="#collapse'.$v['team_ID'].'">
                             <h4 class="card-title">Team Chat</h4>
                             </div>
                             <div class="tester  collapse " id="collapse'.$v['team_ID'].'">
                             <div class="card-body chatField">';
+
+                            
                             $stmtChat = $dbh->prepare("Select c.Chat_ID , c.message , e.first_Name  
                             FROM projectchat c ,employee e 
                             WHERE team_ID = ".$v['team_ID']." 

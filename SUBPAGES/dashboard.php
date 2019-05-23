@@ -131,21 +131,21 @@
 
             <div id="dashboardProjects" class="container tab-pane fade">
                 <div class="jumbotron jumbotron-fluid">
-                <div class="row projectsPage">
-                    <div class="col-12 col-sm-3 col-lg-2 ">
+                    <div class="row projectsPage">
+                        <div class="col-12 col-sm-3 col-lg-2 ">
                             <h6>Select Project:</h6>
-                        <nav class="navbar bg-ligh navbar-light projectsNav">
-                            <ul class="navbar-nav nav" role="tablist">
-                                <?php include '../PHP/showProjects.php' ?>
-                            </ul>
+                            <nav class="navbar bg-ligh navbar-light projectsNav">
+                                <ul class="navbar-nav nav" role="tablist">
+                                    <?php include '../PHP/showProjects.php' ?>
+                                </ul>
 
-                        </nav>
-                    </div>
-                    <div class="col-12 col-sm-9 col-lg-10 tab-content">
-                        <?php include '../PHP/projectInfo.php' ?>
+                            </nav>
+                        </div>
+                        <div class="col-12 col-sm-9 col-lg-10 tab-content">
+                            <?php include '../PHP/projectInfo.php' ?>
 
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
 
@@ -154,16 +154,95 @@
                 <div class="jumbotron jumbotron-fluid">
                     <div class="row teamsPage">
                         <div class="col-12 col-sm-3 col-lg-2 ">
-                                <h6>Select Team:</h6>
+                            <h6>Select Team:</h6>
                             <nav class="navbar bg-ligh navbar-light teamsNav">
                                 <ul class="navbar-nav nav" role="tablist">
-                                    <?php include '../PHP/showTeams.php' ?>
+                                    <?php include '../PHP/showTeams.php' 
+                                    
+                                    ?>
+                                    <?php 
+                                    if($_SESSION['position'] == 'Admin'){
+                                        echo'<button class="btn btn-outline-primary"  data-toggle="modal" data-target="#addTeamModal">Add Team</button>';
+                                    }
+                                    
+                                    ?>
+
                                 </ul>
 
                             </nav>
+                            <div class="modal" id="addTeamModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Add Team</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+
+                                            <form action="../PHP/addNewTeam.php" method="POST">
+                                                <div class="form-group">
+                                                    <label for="addTeamName">Name:</label>
+                                                    <input type="text" class="form-control" id="addTeamName"
+                                                        placeholder="Enter name" name="addTeamName">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">Cancel</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
+
+
                         <div id="teamInfo" class="col-12 col-sm-9 col-lg-10 tab-content">
                             <?php include '../PHP/teamInfo.php' ?>
+                            <div class="modal" id="addEmployeeModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Add Employee</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+
+                                            <form action="../PHP/addNewEmployeeTooTeam.php" method="POST">
+                                                <div class="form-group">
+                                                    <label for="sel1">Select employee:</label>
+                                                    <select class="form-control" id="sel1" name="sellist1">
+                                                        <?php include '../PHP/possibleEmployee.php' ?>
+                                                    </select>
+                                                    <br>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Add</button>
+                                            </form>
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">Cancel</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -337,7 +416,8 @@
     <script>
         if ('<?php echo $tresult[5];?>' != '') {
             $('option:contains("<?php echo $tresult[5];?>")').attr('selected', 'selected');
-            $('option:contains("<?php echo $_SESSION['company_name'];?>")').attr('selected', 'selected');
+            $('option:contains("<?php echo $_SESSION['
+                company_name '];?>")').attr('selected', 'selected');
         }
     </script>
     <!-- <script src="../SCRIPTS/timer.js"></script> -->
