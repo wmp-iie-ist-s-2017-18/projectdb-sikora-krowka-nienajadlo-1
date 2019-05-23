@@ -57,6 +57,8 @@
                 $check_company->execute();
                 $company_result = $check_company->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
 
+
+
                 $_SESSION['company_id'] = $tresult[9];
                 $_SESSION['company_name'] = $company_result[0];
                 $_SESSION['id'] = $tresult[0];
@@ -123,8 +125,31 @@
             <div id="dashboardHome" class="container tab-pane active">
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
-                        <h1 class="display-4">Dashboard</h1>
-                        <p class="lead">This is dashboard main page.</p>
+                    <?php if($_SESSION['position']=='Project Manager'){
+                        echo('<h1>You are manager</h1>');
+                        echo('<p class="lead">You can add new news.</p>');
+                        echo('
+                        <form>
+                            <div class="form-group">
+                                <label for="newsTitle">News title</label>
+                                <input type="text" class="form-control" id="newsTitle" placeholder="Insert news title here.">
+                            </div>
+                            <div class="form-group">
+                                <label for="newsContent">News content:</label>
+                                <input type="textarea" class="form-control" id="newsContent" placeholder="Insert news content here.">
+                            </div>
+                        </form>
+                        ');
+                    }
+                    else{
+                        echo('
+                        
+                        <h1>Dashboard</h1>
+                        <p>This is the dashboard.</p>
+                        
+                        ');
+                    };
+                    ?>
                     </div>
                 </div>
             </div>
