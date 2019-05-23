@@ -56,7 +56,7 @@ if($connection_status){
 
                 
 
-                if($result[7] == 0){
+                if($result[8] == 0){
                     header("Location: ../SUBPAGES/activation.php");
                 }
                 else{
