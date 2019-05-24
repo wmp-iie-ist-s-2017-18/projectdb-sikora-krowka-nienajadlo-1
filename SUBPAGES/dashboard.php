@@ -237,40 +237,7 @@
 
                         <div id="teamInfo" class="col-12 col-sm-9 col-lg-10 tab-content">
                             <?php include '../PHP/teamInfo.php' ?>
-                            <div class="modal" id="addEmployeeModal">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
 
-                                        <!-- Modal Header -->
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">Add Employee</h4>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        </div>
-
-                                        <!-- Modal body -->
-                                        <div class="modal-body">
-
-                                            <form action="../PHP/addNewEmployeeTooTeam.php" method="POST">
-                                                <div class="form-group">
-                                                    <label for="sel1">Select employee:</label>
-                                                    <select class="form-control" id="sel1" name="sellist1">
-                                                        <?php include '../PHP/possibleEmployee.php' ?>
-                                                    </select>
-                                                    <br>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Add</button>
-                                            </form>
-                                        </div>
-
-                                        <!-- Modal footer -->
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger"
-                                                data-dismiss="modal">Cancel</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

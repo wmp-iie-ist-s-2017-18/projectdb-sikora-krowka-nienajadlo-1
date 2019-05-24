@@ -22,7 +22,7 @@ if($connection_status){
         // set the resulting array to associative
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
         foreach($stmt->fetchAll()as $k=>$v) {
-            echo '<option>'.$v['employee_ID'].' '.$v['first_Name'].' '.$v['last_Name'].'</option>';
+            echo '<option value="'.$v['employee_ID'].'">'.$v['first_Name'].' '.$v['last_Name'].'</option>';
             
         }
     }
