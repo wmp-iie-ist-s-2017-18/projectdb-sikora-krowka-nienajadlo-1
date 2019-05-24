@@ -57,8 +57,11 @@
                 $check_company->execute();
                 $company_result = $check_company->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
 
+                $news = $dbh->prepare("SELECT news_content FROM news WHERE company_ID = :company_ID;");
+                $news->bindParam(':company_ID', $tresult[9]);
+                $news_result = $news->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
 
-
+                $_SESSION['last_news'] = $news_result[1];
                 $_SESSION['company_id'] = $tresult[9];
                 $_SESSION['company_name'] = $company_result[0];
                 $_SESSION['id'] = $tresult[0];
@@ -129,7 +132,7 @@
                         echo('<h1>You are manager</h1>');
                         echo('<p class="lead">You can add new news.</p>');
                         echo('
-                        <form>
+                        <form action="PHP/addNews.php">
                             <div class="form-group">
                                 <label for="newsTitle">News title</label>
                                 <input type="text" class="form-control" id="newsTitle" placeholder="Insert news title here.">
@@ -137,6 +140,7 @@
                             <div class="form-group">
                                 <label for="newsContent">News content:</label>
                                 <input type="textarea" class="form-control" id="newsContent" placeholder="Insert news content here.">
+                                <button class="btn btn-success ml-auto" style="margin: 5vh" type="submit">Add news</button>
                             </div>
                         </form>
                         ');
@@ -144,8 +148,7 @@
                     else{
                         echo('
                         
-                        <h1>Dashboard</h1>
-                        <p>This is the dashboard.</p>
+                        <p class="lead">$_SESSION["last_news"]</p>
                         
                         ');
                     };
