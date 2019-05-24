@@ -61,7 +61,13 @@
                 $news->bindParam(':company_ID', $tresult[9]);
                 $news_result = $news->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
 
-                $_SESSION['last_news'] = $news_result[1];
+                if($news_result[1] = null){
+                    $_SESSION["last_news"] = 'News table is empty.';
+                }
+                else{
+                    $_SESSION['last_news'] = $news_result[1];
+                }
+                
                 $_SESSION['company_id'] = $tresult[9];
                 $_SESSION['company_name'] = $company_result[0];
                 $_SESSION['id'] = $tresult[0];
