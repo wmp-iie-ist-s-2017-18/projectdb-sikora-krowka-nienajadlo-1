@@ -31,10 +31,10 @@ if($connection_status){
                             <h4> '.$v['name'].'</h4>';
                             if ($v['leader_ID'] == $_SESSION['id']) {
                                 echo '<h6> You are the leader of this team</h6>
-                                <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#addEmployeeModal">Add employee</button>';
+                                <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#addEmployeeModal'.$v['team_ID'].'">Add employee</button>';
                             }
                             else{
-                                echo '<h6>Leader:  '.$v['LeaderFirst'].' '.$v['LeaderLast'].'</h6>';
+                                echo '<h6>Leader: '.$v['LeaderFirst'].' '.$v['LeaderLast'].'</h6>';
                             }
                            echo '<div class="card">
                             <div class="card-header" id="messageHead'.$v['team_ID'].'"  data-toggle="collapse" data-target="#collapse'.$v['team_ID'].'">
@@ -65,6 +65,39 @@ if($connection_status){
                             
                             </div></div>
                             </div></div>';
+
+                            echo '<div class="modal" id="addEmployeeModal'.$v['team_ID'].'">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Add Employee</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <form action="../PHP/addNewEmployeeTooTeam.php?currentTeamID='.$v['team_ID'].'" method="POST">
+                                            <div class="form-group">
+                                                <label for="sel1">Select employee:</label>
+                                                <select class="form-control" id="sel1" name="sellist1">';
+                                                     include 'possibleEmployee.php';
+                                               echo  '</select>
+                                                <br>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </form>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">Cancel</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>';
+
         }
     }
     catch(PDOException $e){
