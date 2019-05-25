@@ -57,17 +57,6 @@
                 $check_company->execute();
                 $company_result = $check_company->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
 
-                $news = $dbh->prepare("SELECT news_content FROM news WHERE company_ID = :company_ID;");
-                $news->bindParam(':company_ID', $tresult[9]);
-                $news_result = $news->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
-
-                if($news_result[1] = null){
-                    $_SESSION["last_news"] = 'News table is empty.';
-                }
-                else{
-                    $_SESSION['last_news'] = $news_result[1];
-                }
-                
                 $_SESSION['company_id'] = $tresult[9];
                 $_SESSION['company_name'] = $company_result[0];
                 $_SESSION['id'] = $tresult[0];
@@ -138,14 +127,14 @@
                         echo('<h1>You are manager</h1>');
                         echo('<p class="lead">You can add new news.</p>');
                         echo('
-                        <form action="PHP/addNews.php">
+                        <form action="../PHP/addNews.php" method="POST">
                             <div class="form-group">
                                 <label for="newsTitle">News title</label>
-                                <input type="text" class="form-control" id="newsTitle" placeholder="Insert news title here.">
+                                <input type="text" autocomplete="off" class="form-control" name="newsTitle" id="newsTitle" placeholder="Insert news title here.">
                             </div>
                             <div class="form-group">
                                 <label for="newsContent">News content:</label>
-                                <input type="textarea" class="form-control" id="newsContent" placeholder="Insert news content here.">
+                                <input type="textarea"  name="newsContent" autocomplete="off" class="form-control" id="newsContent" placeholder="Insert news content here.">
                                 <button class="btn btn-success ml-auto" style="margin: 5vh" type="submit">Add news</button>
                             </div>
                         </form>
@@ -154,7 +143,8 @@
                     else{
                         echo('
                         
-                        <p class="lead">$_SESSION["last_news"]</p>
+                        <h1 class="display-4" class="newsUsTitle">Company news</h1>
+                        <h1 class="display-8" class="newsUsTitle">Company news</h1>
                         
                         ');
                     };
@@ -286,7 +276,7 @@
                                                 }
                                                 else{
                                                     print('<select name="position" id="updatePosition" required>');
-                                                        print('<option value="" disabled selected>Select your position in company</option>');
+                                                        print('<option value="" disabled>Select your position in company</option>');
                                                         print('<option value="Front-End Developer">Front-End Developer</option>');
                                                         print('<option value="Back-End Developer">Back-End Developer</option>');
                                                         print('<option value="Full-Stack Developer">Full-Stack Developer</option>');
@@ -297,7 +287,9 @@
                                                         print('<option value="Technical Consultant">Technical Consultant</option>');
                                                         print('<option value="Hardware engineer">Hardware Engineer</option>');
                                                         print('<option value="Problem Manager">Problem Manager</option>');
-                                                        print('</select>');
+                                                        print('<option value="Project Manager">Project Manager</option>');
+                                                        print('<option  value="'.$_SESSION['position'].'" selected="selected">'.$_SESSION['position'].'</option>');
+                                                    print('</select>');
                                                 }
                                             ?>
                                     </div>
