@@ -1,5 +1,6 @@
 <?php
 include 'connection.php';
+session_start();
 // try to connect with database
 try {
     $dbh = new PDO($db_dsn, $db_username, $db_password);
