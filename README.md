@@ -12,7 +12,7 @@
 
 - Wszystkie wiadomości email zostały odpowiednio ostylowane z użyciem **CSS** dla lepszej prezentacji wizualnej.
 
-- Przeprowadzona została odpowiednia walidacja formularzy logowania oraz rejestracji w celu zabezpieczenia przed atakiem _SQL Injection_.
+- Przeprowadzona została odpowiednia walidacja formularzy logowania oraz rejestracji w celu zabezpieczenia przed atakiem **_SQL Injection_**.
 
 - Responsive Web Design zrealizowany został przy pomocy **_Bootstrap Grid System_**.
 
