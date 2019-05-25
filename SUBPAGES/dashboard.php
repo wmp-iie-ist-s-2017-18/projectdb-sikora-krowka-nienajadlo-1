@@ -180,6 +180,11 @@
                                 <ul class="navbar-nav nav" role="tablist">
                                     <?php include '../PHP/showProjects.php' ?>
                                 </ul>
+                                <?php 
+                                    if($_SESSION['position'] == 'Admin'){
+                                        echo'<button class="btn btn-outline-primary"  data-toggle="modal" data-target="#addProjectModal">Add Project</button>';
+                                    }
+                                    ?>
 
                             </nav>
                         </div>
@@ -187,6 +192,64 @@
                             <?php include '../PHP/projectInfo.php' ?>
 
                         </div>
+                        <div class="modal" id="addProjectModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Create Project</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+
+                                            <form action="../PHP/addNewProject.php" method="POST">
+                                                <div class="form-group">
+                                                    <label for="addProjectName">Project Name:</label>
+                                                    <input type="text" class="form-control" id="addProjectName"
+                                                        placeholder="Enter name" name="addProjectName">
+                                                </div>
+                                                <div class="form-group">
+                                                <label for="start">Finish date:</label>
+
+                                                <input type="date" id="start" name="trip-start"
+                                                    value="2018-07-22"
+                                                    min="2018-01-01" max="2018-12-31"> 
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="budget">Budget (10$-1 000 000$):</label>
+
+                                                    <input type="number" id="budget" name="budget"
+                                                           min="10" max="1000000">
+                                                    
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="budget">Team:</label>
+
+                                                    <select name="selectTeam">
+                                                        <?php include 'possibleTeam.php' ?>
+                                                      </select>
+                                                    
+                                                </div>
+                                                <div class="form-group">
+                                                        <label for="projectDescription">Description:</label>
+                                                        <textarea class="form-control" rows="5" id="projectDescription"></textarea>
+                                                      </div>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">Cancel</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
