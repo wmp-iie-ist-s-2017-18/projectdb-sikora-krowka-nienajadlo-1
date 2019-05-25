@@ -2,7 +2,11 @@
 
 # Opis projektu:
 
+### Cel projektu:
+
 - Projekt służy do zarządzania projektami w danej firmie. Manager projektu w firmie może zarządzać projektem przez dodanie dowego projektu, tworzenie grup pracowników, którzy będą realizować konkretny projekt. Manager może także dodawać nowe wiadomości jako informacje dotyczące firmy.
+
+### Działanie projektu:
 
 - Podczas procesu rejestracji po prawidłowym skonfigurowaniu serwera pocztowego wysyłana jest na podany przy rejestracji adres email wiadomość zawierająca kod aktywacyjny, który umożliwa prawidłową aktywację konta. Skrypt zajmujący się wysłaniem wiadomości aktywacyjnej znajduje się w lokalizacji _PHP/addEmployee.php_.
 
@@ -17,6 +21,8 @@
 - Responsive Web Design zrealizowany został przy pomocy **_Bootstrap Grid System_**.
 
 - Użyty system kontroli wersji - **GIT**.
+
+### Licencje:
 
 - Wykorzystane w projekcie pliki graficzne pochodzą z serwisu **_pixabay.com_**, będące na licencji **_Creative Commons 0_**. Są one zatem przeznaczone do ogólnego użytku, także komercyjnego. Nie jest przy tym wymagane podawanie autora ani umieszczanie informacji licencyjnej.
 
