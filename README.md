@@ -18,16 +18,16 @@
 
 # - Użyte technologie:
 
-- - HTML 5,
-- - CSS 3,
-- - Preprocesor SASS,
-- - Bootstrap Framework,
-- - JavaScript,
-- - JQuery Framework,
-- - PHP,
-- - PDO Framework,
-- - MySQL,
-- - GIT,
+- **HTML 5**,
+- **CSS 3**,
+- **Preprocesor SASS**,
+- **Bootstrap Framework**,
+- **JavaScript**,
+- **JQuery Framework**,
+- **PHP**,
+- **PDO Framework**,
+- **MySQL**,
+- **GIT**,
 
 # - Konto administratora:
 
