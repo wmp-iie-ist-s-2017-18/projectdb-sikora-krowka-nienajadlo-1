@@ -14,11 +14,11 @@
 
 - Przeprowadzona została odpowiednia walidacja formularzy logowania oraz rejestracji w celu zabezpieczenia przed atakiem _SQL Injection_.
 
-- Responsive Web Design zrealizowany został przy pomocy ** _Bootstrap Grid System_ **.
+- Responsive Web Design zrealizowany został przy pomocy **_Bootstrap Grid System_**.
 
 - Użyty system kontroli wersji - **GIT**.
 
-- Wykorzystane w projekcie pliki graficzne pochodzą z serwisu ** _pixabay.com_ **, będące na licencji ** _Creative Commons 0_ **. Są one zatem przeznaczone do ogólnego użytku, także komercyjnego. Nie jest przy tym wymagane podawanie autora ani umieszczanie informacji licencyjnej.
+- Wykorzystane w projekcie pliki graficzne pochodzą z serwisu **_pixabay.com_**, będące na licencji **_Creative Commons 0_**. Są one zatem przeznaczone do ogólnego użytku, także komercyjnego. Nie jest przy tym wymagane podawanie autora ani umieszczanie informacji licencyjnej.
 
 # Użyte technologie:
 
