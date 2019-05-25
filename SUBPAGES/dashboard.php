@@ -202,14 +202,14 @@
                                     <?php include '../PHP/showTeams.php' 
                                     
                                     ?>
-                                    <?php 
+                                    
+
+                                </ul>
+                                <?php 
                                     if($_SESSION['position'] == 'Admin'){
                                         echo'<button class="btn btn-outline-primary"  data-toggle="modal" data-target="#addTeamModal">Add Team</button>';
                                     }
-                                    
                                     ?>
-
-                                </ul>
 
                             </nav>
                             <div class="modal" id="addTeamModal">

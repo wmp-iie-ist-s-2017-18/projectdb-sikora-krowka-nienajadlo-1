@@ -15,14 +15,14 @@
         $stmt->execute();
 
 
-        $check = $conn->prepare("SELECT * FROM team WHERE `name` = '$teamName'");
+        $check = $conn->prepare("SELECT team_ID FROM team WHERE `name` = '$teamName'");
             $check->execute();
 
             $result = $check->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
 
-            $actualTeamName = $result[0];
+            $actualTeamID = $result[0];
 
-            $stmt = $conn->prepare("INSERT INTO `team_employee`( `employee_ID`, `team_ID`) VALUES ('$LeaderID','$actualTeamName')"); 
+            $stmt = $conn->prepare("INSERT INTO `team_employee`( `employee_ID`, `team_ID`) VALUES ('$LeaderID','$actualTeamID')"); 
         $stmt->execute();
       
 

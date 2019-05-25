@@ -79,8 +79,8 @@ if($connection_status){
 
                                         <form action="../PHP/addNewEmployeeTooTeam.php?currentTeamID='.$v['team_ID'].'" method="POST">
                                             <div class="form-group">
-                                                <label for="sel1">Select employee:</label>
-                                                <select class="form-control" id="sel1" name="sellist1">';
+                                                <label for="sel1'.$v['team_ID'].'">Select employee:</label>
+                                                <select class="form-control" id="sel1'.$v['team_ID'].'" name="sellist1">';
                                                      include 'possibleEmployee.php';
                                                echo  '</select>
                                                 <br>
