@@ -10,9 +10,11 @@
 
   - - W przypadku zapomnienia przez użytkownika hasła jest możliwe nadanie nowego hasła dla konta. Aby to zrobić należy przejść do zakładki Sign in a następnie użyć opcji Reset Password. W formularzu należy podać adres email do konta, na który zostanie wysłany kod, który następnie należy podać w formularzu służącym do nadania nowego hasła. Jeżeli w bazie nie zostanie znaleziony adres email użytkownik zostanie o tym poinformowany i email z kodem nie zostanie wysłany.
 
-  - -Wszystkie wiadomości email zostały odpowiednio ostylowane z użyciem CSS dla lepszej prezentacji wizualnej.
+  - - Wszystkie wiadomości email zostały odpowiednio ostylowane z użyciem CSS dla lepszej prezentacji wizualnej.
 
   - - Przeprowadzona została odpowiednia walidacja formularzy logowania oraz rejestracji w celu zabezpieczenia przed SQL Injection.
+
+  - - Użyty system kontroli wersji - GIT.
 
 - Użyte technologie:
 
@@ -25,6 +27,7 @@
 - - PHP,
 - - PDO Framework,
 - - MySQL,
+- - GIT,
 
 - Konto administratora:
 
