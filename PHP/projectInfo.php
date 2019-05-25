@@ -31,6 +31,7 @@ if($connection_status){
                             <h6 class="lead" style="padding: 1vh 2px;"><span style="font-size: 1.2rem; font-weight: bold;">Finish: </span> '.$v['finish'].'</h6>
                             <h6 class="lead" style="padding: 1vh 2px;"><span style="font-size: 1.2rem; font-weight: bold;">Budget: </span>'.$v['budget'].'$</h6>
                             <h6 class="lead" style="padding: 1vh 2px;"><span style="font-size: 1.2rem; font-weight: bold;">Team: </span>'.$v['teamName'].'</h6>
+                            <h6 class="lead" style="padding: 1vh 2px;"><span style="font-size: 1.2rem; font-weight: bold;">Description: </span>'.$v['description'].'</h6>
                             </div>';
         }
     }
