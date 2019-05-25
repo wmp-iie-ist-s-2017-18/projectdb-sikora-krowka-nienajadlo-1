@@ -38,7 +38,9 @@
 - **Email**: admin@gmail.com
 - **Hasło**: zaq1@WSX
 
-# Konfiguracja serwera pocztowego należy:
+# Konfiguracja serwera pocztowego:
+
+### Do prawidłowego funkcjonowania serwera SMTP należy:
 
 - Zainstalować najnowszą wersję XAMPP,
 
