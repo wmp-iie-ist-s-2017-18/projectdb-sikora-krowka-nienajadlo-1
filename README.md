@@ -41,17 +41,17 @@
 
 # Konto administratora:
 
-- **Email**: admin@gmail.com
-- **Hasło**: zaq1@WSX
+- **Email**: _admin@gmail.com_
+- **Hasło**: _zaq1@WSX_
 
 # Konfiguracja serwera pocztowego:
 
 ### Do prawidłowego funkcjonowania serwera SMTP należy:
 
-- Zainstalować najnowszą wersję XAMPP,
+- Zainstalować najnowszą wersję **XAMPP**,
 
-- Przejść do folderu smtp_config,
+- Przejść do folderu _smtp-config_,
 
-- Otworzyć plik readme.txt,
+- Otworzyć plik _readme.txt_,
 
 - Postępować zgodnie z instrukcją zawartą w powyższym pliku.
