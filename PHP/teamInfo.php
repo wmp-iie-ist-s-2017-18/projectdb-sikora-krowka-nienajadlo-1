@@ -31,8 +31,7 @@ if($connection_status){
                             <h4 style="text-align: center" class="display-4"> '.$v['name'].'</h4>';
                             if ($v['leader_ID'] == $_SESSION['id']) {
                                 echo '<h6 style="text-align: center; font-size: 2rem; font-weight: normal;"> You are the leader of this team</h6>
-                                <button class="btn btn-outline-primary"  style="margin: 10px auto; justify-self: center;" data-toggle="modal" data-target="#addEmployeeModal'.$v['team_ID'].'">Add employee</button>
-                                ';
+                                <button class="btn btn-outline-primary"  style="margin: 10px auto; justify-self: center;" data-toggle="modal" data-target="#addEmployeeModal'.$v['team_ID'].'">Add employee</button>';
                             }
                             else{
                                 echo '<h6style="text-align: center">Leader: '.$v['LeaderFirst'].' '.$v['LeaderLast'].'</h6>';
@@ -44,7 +43,6 @@ if($connection_status){
                             <div class="tester  collapse " id="collapse'.$v['team_ID'].'">
                             <div class="card-body chatField">';
 
-                            
                             
                             $stmtChat = $dbh->prepare("Select c.Chat_ID , c.message , e.first_Name  
                             FROM projectchat c ,employee e 
@@ -98,9 +96,8 @@ if($connection_status){
 
                                 </div>
                             </div>
-                        </div>
-                        
-                        ';
+                        </div>';
+
         }
     }
     catch(PDOException $e){
