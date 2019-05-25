@@ -24,11 +24,11 @@
     if($connection_status){
         try{
             // database prepared statements
-            $insertNews = $dbh->prepare("INSERT INTO `news`(`news_content`, `company_ID`, `news_title`) VALUES (".$newsContent.",".$_SESSION['company_id'].",".$newsTitle.")");
+            $insertNews = $dbh->prepare("INSERT INTO `news`(`news_content`, `company_ID`, `news_title`) VALUES ('".$newsContent."',".$_SESSION['company_id'].",'".$newsTitle."')");
             $insertNews->execute();
             print("<br> Query executed!");
 
-            // header("Location: ../SUBPAGES/dashboard.php?news_added");
+            header("Location: ../SUBPAGES/dashboard.php?news_added");
         }
         catch(PDOException $e){
             print("Can't execute this query!");

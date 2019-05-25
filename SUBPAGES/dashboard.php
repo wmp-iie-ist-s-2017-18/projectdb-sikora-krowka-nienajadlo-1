@@ -57,6 +57,14 @@
                 $check_company->execute();
                 $company_result = $check_company->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
 
+                $check_newsTitle = $dbh->prepare("SELECT news_title FROM news WHERE news_ID = (SELECT max(news_ID) FROM news)");
+                $check_newsTitle->execute();
+                $check_title = $check_newsTitle->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
+                
+                $check_newsContent = $dbh->prepare("SELECT news_content FROM news WHERE news_ID = (SELECT max(news_ID) FROM news)");
+                $check_newsContent->execute();
+                $check_content = $check_newsContent->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_LAST);
+                
                 $_SESSION['company_id'] = $tresult[9];
                 $_SESSION['company_name'] = $company_result[0];
                 $_SESSION['id'] = $tresult[0];
@@ -124,6 +132,16 @@
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
                     <?php if($_SESSION['position']=='Project Manager'){
+
+                        echo('
+                                                
+                        <h1 class="display-3" class="newsUsTitle">'.$check_title[0].'</h1>
+                        <h1 class="" class="newsUsTitle">'.$check_content[0].'</h1>
+                        </br>
+                        </br>
+                        </br>
+                        ');
+
                         echo('<h1>You are manager</h1>');
                         echo('<p class="lead">You can add new news.</p>');
                         echo('
@@ -143,8 +161,8 @@
                     else{
                         echo('
                         
-                        <h1 class="display-4" class="newsUsTitle">Company news</h1>
-                        <h1 class="display-8" class="newsUsTitle">Company news</h1>
+                        <h1 class="display-3" class="newsUsTitle">'.$check_title[0].'</h1>
+                        <h1 class="" class="newsUsTitle">'.$check_content[0].'</h1>
                         
                         ');
                     };
@@ -288,7 +306,6 @@
                                                         print('<option value="Hardware engineer">Hardware Engineer</option>');
                                                         print('<option value="Problem Manager">Problem Manager</option>');
                                                         print('<option value="Project Manager">Project Manager</option>');
-                                                        print('<option  value="'.$_SESSION['position'].'" selected="selected">'.$_SESSION['position'].'</option>');
                                                     print('</select>');
                                                 }
                                             ?>
@@ -400,6 +417,10 @@
             echo("<script>$('#dashboardTeamNav').click();</script>");
             echo("<script>$('#teamLink".$_GET['sendmessage']."').click();</script>");
             echo("<script>$('#messageHead".$_GET['sendmessage']."').click();</script>");
+        }
+
+        if (isset($_GET['news_added'])) {
+            echo("<script>alert('Your news was successfully added! Your company see new message.');</script>");
         }
         
 
