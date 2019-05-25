@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Maj 2019, 19:35
+-- Czas generowania: 25 Maj 2019, 19:39
 -- Wersja serwera: 10.1.38-MariaDB
 -- Wersja PHP: 5.6.40
 
@@ -116,16 +116,6 @@ CREATE TABLE `news` (
   `company_ID` int(11) NOT NULL,
   `news_title` varchar(1000) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
---
--- Zrzut danych tabeli `news`
---
-
-INSERT INTO `news` (`news_ID`, `news_content`, `company_ID`, `news_title`) VALUES
-(9, 'asddsa', 1, 'dsaasd'),
-(10, 'Są tanio po 2zł za 10 kilo', 1, 'Parówki w biedrze'),
-(11, 'Jest po 10zł za 0,6', 1, 'Wódka w sklepie na Brzózie '),
-(12, 'hehe', 1, 'Kiełba 2 ziko za kilo');
 
 -- --------------------------------------------------------
 
