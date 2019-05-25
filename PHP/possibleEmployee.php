@@ -16,7 +16,7 @@ catch (PDOException $e) {
 
 if($connection_status){
     try{
-        $stmt = $dbh->prepare("Select first_Name ,last_Name,employee_ID FROM employee where employee_ID != ".$_SESSION['id']); 
+        $stmt = $dbh->prepare("Select first_Name ,last_Name,employee_ID FROM employee where company_ID = ".$_SESSION['company_id']." AND employee_ID != ".$_SESSION['id']); 
         $stmt->execute();
         $employeeArray = array();
         
