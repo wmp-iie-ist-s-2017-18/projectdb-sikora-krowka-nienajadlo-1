@@ -28,13 +28,13 @@ if($connection_status){
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
         foreach($stmt->fetchAll()as $k=>$v) {
             echo ' <div class="tab-pane container" id="team'.$v['team_ID'].'">
-                            <h4> '.$v['name'].'</h4>';
+                            <h4 style="text-align: center" class="display-4"> '.$v['name'].'</h4>';
                             if ($v['leader_ID'] == $_SESSION['id']) {
-                                echo '<h6> You are the leader of this team</h6>
-                                <button class="btn btn-outline-primary"  data-toggle="modal" data-target="#addEmployeeModal'.$v['team_ID'].'">Add employee</button>';
+                                echo '<h6 style="text-align: center; font-size: 2rem; font-weight: normal;"> You are the leader of this team</h6>
+                                <button class="btn btn-outline-primary"  style="margin: 10px auto; justify-self: center;" data-toggle="modal" data-target="#addEmployeeModal'.$v['team_ID'].'">Add employee</button>';
                             }
                             else{
-                                echo '<h6>Leader: '.$v['LeaderFirst'].' '.$v['LeaderLast'].'</h6>';
+                                echo '<h6style="text-align: center">Leader: '.$v['LeaderFirst'].' '.$v['LeaderLast'].'</h6>';
                             }
                            echo '<div class="card">
                             <div class="card-header" id="messageHead'.$v['team_ID'].'"  data-toggle="collapse" data-target="#collapse'.$v['team_ID'].'">

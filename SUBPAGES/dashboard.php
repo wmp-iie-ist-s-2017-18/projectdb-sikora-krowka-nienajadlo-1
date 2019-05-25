@@ -135,7 +135,7 @@
 
                         echo('
                                                 
-                        <h1 class="display-3" class="newsUsTitle">'.$check_title[0].'</h1>
+                        <h1 class="display-4" class="newsUsTitle">'.$check_title[0].'</h1>
                         <h1 class="" class="newsUsTitle">'.$check_content[0].'</h1>
                         </br>
                         </br>
@@ -161,7 +161,7 @@
                     else{
                         echo('
                         
-                        <h1 class="display-3" class="newsUsTitle">'.$check_title[0].'</h1>
+                        <h1 class="display-4" class="newsUsTitle">'.$check_title[0].'</h1>
                         <h1 class="" class="newsUsTitle">'.$check_content[0].'</h1>
                         
                         ');
