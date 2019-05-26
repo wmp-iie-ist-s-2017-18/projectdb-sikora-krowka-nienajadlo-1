@@ -4,7 +4,7 @@
 
 ### Cel projektu:
 
-- Projekt służy do zarządzania projektami w danej firmie. Manager projektu w firmie może zarządzać projektem przez dodanie dowego projektu, tworzenie grup pracowników, którzy będą realizować konkretny projekt. Manager może także dodawać nowe wiadomości jako informacje dotyczące firmy.
+- Aplikacja służy do zarządzania projektami w danej firmie. Manager projektu w firmie może zarządzać projektem przez dodanie nowego projektu do realizacji, tworzenie grup pracowników, którzy będą realizować konkretny projekt. Manager może także dodawać nowe wiadomości jako informacje dotyczące firmy.
 
 ### Działanie projektu:
 
@@ -55,3 +55,14 @@
 - Otworzyć plik _readme.txt_,
 
 - Postępować zgodnie z instrukcją zawartą w powyższym pliku.
+
+# Import bazy danych
+
+Do prawidłowego działania aplikacji potrzebne jest zaimportowanie bazy danych. Aby to zrobic należy:
+
+- Uruchomić w przeglądarce _localhost_ a następnie _phpMyAdmin_,
+- Stworzyć nową bazę daych o nazwie **_projectmanager_**,
+- Przejść do nowo utworzonej bazy danych a następnie do zakładki **_Import_**,
+- W zakładce **_Import_** należy uruchomić okno do wybierania plików (przycisk _Wybierz plik_),
+- W nowo otawrtym oknie należy przejść do folderu **_DATABASE_** i wybrać plik _projectmanager.sql_,
+- Jeżeli okno dialogowe zamknie się należy kliknąć na przycisku _Wykonaj_.
