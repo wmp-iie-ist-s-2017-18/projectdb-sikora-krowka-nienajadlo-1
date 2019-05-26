@@ -67,3 +67,5 @@ Do prawidłowego działania aplikacji potrzebne jest zaimportowanie bazy danych.
 - W nowo otawrtym oknie należy przejść do folderu **_DATABASE_** i wybrać plik _projectmanager.sql_,
 - Wybrać kodowanie **_UTF-8_** jeżeli domyślnie ustawione jest inne,
 - Jeżeli okno dialogowe zamknie się należy kliknąć na przycisku _Wykonaj_.
+
+##### Procedury i funkcje zawarte są w zakładkach Procedury lub Funkcje w pasku nawigacyjnym po lewej stronie.
