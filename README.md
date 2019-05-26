@@ -62,7 +62,7 @@
 
 - Skopiować plik php.ini i podmienić orginalny plik w folderze xampp\php,
 
-- Skopiować plik sednemail.ini i podmienić orginalny plik w folderze xampp\sendemail,
+- Skopiować plik sendemail.ini i podmienić orginalny plik w folderze xampp\sendemail,
 
 - Zrestartować Apache Server w panelu administracyjnym Xampp.
 

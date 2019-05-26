@@ -21,7 +21,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
     <!-- php scripts -->
+    
     <?php
         error_reporting(E_ERROR | E_PARSE);
         include '../PHP/connection.php';
@@ -82,6 +84,7 @@
 </head>
 
 <body class="scrollbar-primary">
+    
     <!-- dashboard navigation -->
     <!-- A grey horizontal navbar that becomes vertical on small screens -->
     <nav class="dashNav navbar navbar-expand-md bg-dark navbar-dark">
@@ -181,7 +184,7 @@
                                     <?php include '../PHP/showProjects.php' ?>
                                 </ul>
                                 <?php 
-                                    if($_SESSION['position'] == 'Admin'){
+                                    if($_SESSION['position'] == 'Admin' || $_SESSION['position'] == 'Project Manager'){
                                         echo'<button class="btn btn-outline-primary"  data-toggle="modal" data-target="#addProjectModal">Add Project</button>';
                                     }
                                     ?>
@@ -189,8 +192,10 @@
                             </nav>
                         </div>
                         <div class="col-12 col-sm-9 col-lg-10 tab-content">
+                            
+                    <canvas id="myChart" width="400" height="200"></canvas>
                             <?php include '../PHP/projectInfo.php' ?>
-
+                                    
                         </div>
                         <div class="modal" id="addProjectModal">
                                 <div class="modal-dialog">
@@ -214,9 +219,9 @@
                                                 <div class="form-group">
                                                 <label for="start">Finish date:</label>
 
-                                                <input type="date" id="start" name="trip-start"
-                                                    value="2018-07-22"
-                                                    min="2018-01-01" max="2018-12-31"> 
+                                                <input type="date" id="finishDate" name="finishDate"
+                                                    value="<?php echo date("Y-m-d")?>"
+                                                    min="<?php echo date("Y-m-d")?>" max="2022-12-31"> 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="budget">Budget (10$-1 000 000$):</label>
@@ -229,13 +234,24 @@
                                                     <label for="budget">Team:</label>
 
                                                     <select name="selectTeam">
-                                                        <?php include 'possibleTeam.php' ?>
+                                                        <?php 
+                                                            $stmt = $dbh->prepare("Select team_ID, name FROM team GROUP BY name"); 
+                                                            $stmt->execute();
+                                                            $employeeArray = array();
+                                                            
+                                                            // set the resulting array to associative
+                                                            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                                            foreach($stmt->fetchAll()as $k=>$v) {
+                                                                echo '<option value='.$v['team_ID'].'>'.$v['name'].'</option>';
+                                                                
+                                                            }
+                                                        ?>
                                                       </select>
                                                     
                                                 </div>
                                                 <div class="form-group">
                                                         <label for="projectDescription">Description:</label>
-                                                        <textarea class="form-control" rows="5" id="projectDescription"></textarea>
+                                                        <textarea class="form-control" name ="projectDescription"  rows="5" id="projectDescription"></textarea>
                                                       </div>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </form>
@@ -486,9 +502,8 @@
             echo("<script>alert('Your news was successfully added! Your company see new message.');</script>");
         }
         
-
+        
     ?>
-
     <script src="../SCRIPTS/dashboard.js"></script>
     <script>
         if ('<?php echo $tresult[5];?>' != '') {
@@ -496,7 +511,71 @@
             $('option:contains("<?php echo $_SESSION['
                 company_name '];?>")').attr('selected', 'selected');
         }
+        const dataChart = <?php
+include 'connection.php';
+// try to connect with database
+try {
+    $dbh = new PDO($db_dsn, $db_username, $db_password);
+    $connection_status = true;
+} 
+
+// exception
+catch (PDOException $e) {
+    print("Error!: " . $e->getMessage() . "<br/>");
+    $connection_status = false;
+    die();
+}
+
+if($connection_status){
+    try{
+        $stmt = $dbh->prepare("SELECT name , budget FROM project "); 
+        $stmt->execute();
+        echo "[[";
+        // set the resulting array to associative
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        foreach($stmt->fetchAll()as $k=>$v) {
+            echo "'".$v["name"]."'";
+            echo " , ";
+        }
+        echo "],[";
+        $stmt = $dbh->prepare("SELECT name , budget FROM project "); 
+        $stmt->execute();
+        // set the resulting array to associative
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        foreach($stmt->fetchAll()as $k=>$v) {
+            echo $v["budget"];
+            echo " ,";
+        }
+        echo "]]";
+    }
+    catch(PDOException $e){
+        print("Can't execute this query!");
+    }
+}
+?>;
     </script>
+   <script>
+   var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: dataChart[0],
+        datasets: [{
+            label: 'Projects Budget',
+            data: dataChart[1],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});</script>
     <!-- <script src="../SCRIPTS/timer.js"></script> -->
 
 </body>
