@@ -52,9 +52,11 @@
 
 - Przejść do folderu _smtp-config_,
 
-- Otworzyć plik _readme.txt_,
+- Skopiować plik php.ini i podmienić orginalny plik w folderze xampp\php,
 
-- Postępować zgodnie z instrukcją zawartą w powyższym pliku.
+- Skopiować plik sednemail.ini i podmienić orginalny plik w folderze xampp\sendemail,
+
+- Zrestartować Apache Server w panelu administracyjnym Xampp.
 
 # Import bazy danych
 
@@ -68,4 +70,4 @@ Do prawidłowego działania aplikacji potrzebne jest zaimportowanie bazy danych.
 - Wybrać kodowanie **_UTF-8_** jeżeli domyślnie ustawione jest inne,
 - Jeżeli okno dialogowe zamknie się należy kliknąć na przycisku _Wykonaj_.
 
-##### Procedury i funkcje zawarte są w zakładkach Procedury lub Funkcje w pasku nawigacyjnym po lewej stronie.
+##### Procedury i funkcje zawarte są w zakładkach Procedury lub Funkcje w pasku nawigacyjnym po lewej stronie w phpMyAdmin.
