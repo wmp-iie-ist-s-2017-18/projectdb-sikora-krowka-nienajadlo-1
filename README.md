@@ -4,7 +4,11 @@
 
 ### Cel projektu:
 
-- Aplikacja służy do zarządzania projektami w danej firmie. Manager projektu w firmie może zarządzać projektem przez dodanie nowego projektu do realizacji, tworzenie grup pracowników, którzy będą realizować konkretny projekt. Manager może także dodawać nowe wiadomości jako informacje dotyczące firmy.
+- Aplikacja służy do zarządzania projektami w danej firmie. Manager projektu w firmie może zarządzać projektem przez dodanie nowego projektu do realizacji, tworzenie grup pracowników, którzy będą realizować konkretny projekt. Manager może także dodawać nowe wiadomości jako informacje dotyczące firmy. Fragment części logicznej został wyniesiony na bazę danych poprzez stworzenie odpowiednio:
+
+- - Funkcji checkState, która weryfikuje czy termin zakończenia projektu już minął,
+
+- - Procedury updateStates, która nadaje projektowi nowy status - zależnie od tego czy termin minął czy nie. Jeżeli upłynie termin zakończenia projektu, to procedura ta nadaje status _Finished_. W przeciwnym wypadku procedura nie zmienia niczego w danym rekordzie.
 
 ### Działanie projektu:
 
