@@ -18,6 +18,7 @@
 
 - Procedury __updateStates__, która nadaje projektowi nowy status - zależnie od tego czy termin minął czy nie. Jeżeli upłynie termin zakończenia projektu, to procedura ta nadaje status _Finished_. W przeciwnym wypadku procedura nadaje każdemu projektowi, którego termin realizacji nie minął status __Active__. Procedure: 
 
+```sql
 > BEGIN
 > DECLARE x int DEFAULT 0;
 > DECLARE y int DEFAULT 0;
@@ -27,6 +28,7 @@
 > SET y = y + 1;
 > END WHILE;
 > END
+```
 
 ### Działanie projektu:
 
