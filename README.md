@@ -74,11 +74,11 @@
 
 Aby poprawnie uruchomić projekt na komputerze należy:
 
-- Zainstalować najnowszą wersję XAMPP,
+- Zainstalować najnowszą wersję **XAMPP**,
 - Sklonować lub pobrać projekt na komputer,
-- Skonfigurować serwer pocztowy Apache SMTP,
-- Zaimportować bazę danych do phpMyAdmin (domyślne narzędzie pakietu XAMPP),
-- Zrestartować serwer Apache.
+- Skonfigurować serwer pocztowy **Apache SMTP**,
+- Zaimportować bazę danych do **phpMyAdmin** _(domyślne narzędzie pakietu XAMPP)_,
+- Zrestartować serwer **Apache**.
 
 Wszystkie wymagane procesy konfiguracji i importu opisane są poniżej.
 
@@ -88,13 +88,13 @@ Wszystkie wymagane procesy konfiguracji i importu opisane są poniżej.
 
 - Zainstalować najnowszą wersję **XAMPP**,
 
-- Przejść do folderu _smtp-config_,
+- Przejść do folderu **_smtp-config_**,
 
-- Skopiować plik php.ini i podmienić orginalny plik w folderze xampp\php,
+- Skopiować plik **php.ini** i podmienić orginalny plik w folderze **xampp\php**,
 
-- Skopiować plik sendemail.ini i podmienić orginalny plik w folderze xampp\sendemail,
+- Skopiować plik **sendemail.ini** i podmienić orginalny plik w folderze **xampp\sendemail**,
 
-- Zrestartować Apache Server w panelu administracyjnym XAMPP.
+- Zrestartować **Apache Server** w panelu administracyjnym **XAMPP**.
 
 # Import bazy danych
 
