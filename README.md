@@ -94,7 +94,7 @@ Wszystkie wymagane procesy konfiguracji i importu opisane są poniżej.
 
 - Skopiować plik sendemail.ini i podmienić orginalny plik w folderze xampp\sendemail,
 
-- Zrestartować Apache Server w panelu administracyjnym Xampp.
+- Zrestartować Apache Server w panelu administracyjnym XAMPP.
 
 # Import bazy danych
 
