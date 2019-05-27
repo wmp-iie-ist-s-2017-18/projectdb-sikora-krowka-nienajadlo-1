@@ -18,7 +18,7 @@
  END
 ```
 
-- Procedury **updateStates**, która nadaje projektowi nowy status - zależnie od tego czy termin minął czy nie. Jeżeli upłynie termin zakończenia projektu, to procedura ta nadaje status _Finished_. W przeciwnym wypadku procedura nadaje każdemu projektowi, którego termin realizacji nie minął status **Active**. Procedure:
+- Procedury **updateStates**, która nadaje projektowi nowy status - zależnie od tego czy termin minął czy nie. Jeżeli upłynie termin zakończenia projektu, to procedura ta nadaje status _Finished_. W przeciwnym wypadku procedura nadaje każdemu projektowi, którego termin realizacji nie minął status **Active**. Procedura:
 
 ```sql
  BEGIN
