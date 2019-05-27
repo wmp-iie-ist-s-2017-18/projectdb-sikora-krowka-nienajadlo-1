@@ -10,9 +10,9 @@
 
 ##### Fragment części logicznej został wyniesiony na bazę danych poprzez stworzenie odpowiednio:
 
-- Funkcji checkState, która weryfikuje czy termin zakończenia projektu już minął,
+- Funkcji __checkState__, która weryfikuje czy termin zakończenia projektu już minął,
 
-- Procedury updateStates, która nadaje projektowi nowy status - zależnie od tego czy termin minął czy nie. Jeżeli upłynie termin zakończenia projektu, to procedura ta nadaje status _Finished_. W przeciwnym wypadku procedura nadaje każdemu projektowi, którego termin realizacji nie minął status __Active__.
+- Procedury __updateStates__, która nadaje projektowi nowy status - zależnie od tego czy termin minął czy nie. Jeżeli upłynie termin zakończenia projektu, to procedura ta nadaje status _Finished_. W przeciwnym wypadku procedura nadaje każdemu projektowi, którego termin realizacji nie minął status __Active__.
 
 ### Działanie projektu:
 
