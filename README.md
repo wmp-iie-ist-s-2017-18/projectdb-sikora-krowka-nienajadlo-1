@@ -10,14 +10,15 @@
 
 ##### Fragment części logicznej został wyniesiony na bazę danych poprzez stworzenie odpowiednio:
 
-- Funkcji __checkState__, która weryfikuje czy termin zakończenia projektu już minął. Funkcja:
+- Funkcji **checkState**, która weryfikuje czy termin zakończenia projektu już minął. Funkcja:
+
 ```sql
  BEGIN
  RETURN IF(DATE(now())>(SELECT finish FROM project Where project.project_ID = ID_Project), "Closed", "Active");
  END
- ```
+```
 
-- Procedury __updateStates__, która nadaje projektowi nowy status - zależnie od tego czy termin minął czy nie. Jeżeli upłynie termin zakończenia projektu, to procedura ta nadaje status _Finished_. W przeciwnym wypadku procedura nadaje każdemu projektowi, którego termin realizacji nie minął status __Active__. Procedure: 
+- Procedury **updateStates**, która nadaje projektowi nowy status - zależnie od tego czy termin minął czy nie. Jeżeli upłynie termin zakończenia projektu, to procedura ta nadaje status _Finished_. W przeciwnym wypadku procedura nadaje każdemu projektowi, którego termin realizacji nie minął status **Active**. Procedure:
 
 ```sql
  BEGIN
@@ -68,6 +69,18 @@
 
 - **Email**: _admin@gmail.com_
 - **Hasło**: _zaq1@WSX_
+
+# Uruchomienie projektu
+
+Aby poprawnie uruchomić projekt na komputerze należy:
+
+- Zainstalować najnowszą wersję XAMPP,
+- Sklonować lub pobrać projekt na komputer,
+- Skonfigurować serwer pocztowy Apache SMTP,
+- Zaimportować bazę danych do phpMyAdmin (domyślne narzędzie pakietu XAMPP),
+- Zrestartować serwer Apache.
+
+Wszystkie wymagane procesy konfiguracji i importu opisane są poniżej.
 
 # Konfiguracja serwera pocztowego:
 
