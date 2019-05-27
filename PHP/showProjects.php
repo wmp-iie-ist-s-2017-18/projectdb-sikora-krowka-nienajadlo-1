@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 include 'connection.php';
 // try to connect with database
 try {
@@ -16,7 +17,12 @@ catch (PDOException $e) {
 
 if($connection_status){
     try{
+        if ($_SESSION['position'] == "Project Manager"){
+            $stmt = $dbh->prepare("Select p.name AS name FROM project p");
+        }
+        else{
         $stmt = $dbh->prepare("Select p.name AS name FROM project p, team_employee te ,team t where te.employee_ID = ".$_SESSION['id']." AND te.team_ID = p.team_ID GROUP BY p.name"); 
+        }
         $stmt->execute();
         $employeeArray = array();
         

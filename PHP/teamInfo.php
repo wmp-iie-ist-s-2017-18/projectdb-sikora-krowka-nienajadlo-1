@@ -16,11 +16,19 @@ catch (PDOException $e) {
 
 if($connection_status){
     try{
+        if ($_SESSION['position']='Project Manager') {
+            $stmt = $dbh->prepare("SELECT t.name ,t.team_ID, t.leader_ID,
+            (SELECT e.first_Name FROM employee e WHERE e.employee_ID=t.leader_ID) as LeaderFirst , 
+            (SELECT e.last_Name FROM employee e WHERE e.employee_ID=t.leader_ID) as LeaderLast 
+            FROM employee e, team t,team_employee te GROUP BY t.team_ID"); 
+        }
+        else {
         $stmt = $dbh->prepare("SELECT t.name ,t.team_ID, t.leader_ID,
         (SELECT e.first_Name FROM employee e WHERE e.employee_ID=t.leader_ID) as LeaderFirst , 
         (SELECT e.last_Name FROM employee e WHERE e.employee_ID=t.leader_ID) as LeaderLast 
         FROM employee e, team t,team_employee te WHERE e.employee_ID =".$_SESSION['id']." 
         AND te.employee_ID = e.employee_ID AND te.team_ID = t.team_ID"); 
+        }
         $stmt->execute();
         $employeeArray = array();
         

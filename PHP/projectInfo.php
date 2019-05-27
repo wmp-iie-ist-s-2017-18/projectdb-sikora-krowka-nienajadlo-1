@@ -16,8 +16,15 @@ catch (PDOException $e) {
 
 if($connection_status){
     try{
+        if ($_SESSION['position'] == 'Project Manager') {
+            $stmt = $dbh->prepare("Select p.project_ID, p.name ,p.state , p.start ,p.finish, p.budget ,p.description ,t.name  
+        AS teamName  FROM project p, team_employee te ,team t GROUP BY p.name"); 
+        
+        }
+        else{
         $stmt = $dbh->prepare("Select p.project_ID, p.name ,p.state , p.start ,p.finish, p.budget ,p.description ,t.name  
         AS teamName  FROM project p, team_employee te ,team t where te.employee_ID = ".$_SESSION['id']." AND te.team_ID = p.team_ID GROUP BY p.name"); 
+        }
         $stmt->execute();
         $employeeArray = array();
         

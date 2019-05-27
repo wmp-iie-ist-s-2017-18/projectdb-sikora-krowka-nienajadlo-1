@@ -285,7 +285,7 @@
 
                                 </ul>
                                 <?php 
-                                    if($_SESSION['position'] == 'Admin'){
+                                    if($_SESSION['position'] == 'Admin' || $_SESSION['position'] == 'Project Manager'){
                                         echo'<button class="btn btn-outline-primary"  data-toggle="modal" data-target="#addTeamModal">Add Team</button>';
                                     }
                                     ?>
