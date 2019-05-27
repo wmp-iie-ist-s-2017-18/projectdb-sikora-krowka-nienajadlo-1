@@ -102,7 +102,7 @@ CREATE TABLE `employee` (
 
 INSERT INTO `employee` (`employee_ID`, `first_Name`, `last_Name`, `email`, `password`, `position`, `activated`, `tel_number`, `activation_code`, `company_ID`) VALUES
 (66, 'Adam', 'Krówka', 'adamkrowka108@gmail.com', '$2y$10$NAwNjF7nPyiZM26uUI1zCO8mf3.ZMhHAsDgVcwv78XGn0NYdA63hC', 'Full-Stack Developer', 1, 537399743, 2147483647, 1),
-(67, 'Dawid', 'Nienajadło', 'admin@gmail.com', '$2y$10$9QWF6K6KKY06OvxXAK/ec.rg7jEJUge3MYl9D8E0WXuKn1y1FDOyu', 'Admin', 1, 516804066, 1037142154, 1);
+(67, 'Dawid', 'Nienajadło', 'admin@gmail.com', '$2y$10$9QWF6K6KKY06OvxXAK/ec.rg7jEJUge3MYl9D8E0WXuKn1y1FDOyu', 'Admin', 1, 000000000, 1037142154, 1);
 
 -- --------------------------------------------------------
 
