@@ -12,7 +12,7 @@
 
 - Funkcji checkState, która weryfikuje czy termin zakończenia projektu już minął,
 
-- Procedury updateStates, która nadaje projektowi nowy status - zależnie od tego czy termin minął czy nie. Jeżeli upłynie termin zakończenia projektu, to procedura ta nadaje status _Finished_. W przeciwnym wypadku procedura nie zmienia niczego w danym rekordzie.
+- Procedury updateStates, która nadaje projektowi nowy status - zależnie od tego czy termin minął czy nie. Jeżeli upłynie termin zakończenia projektu, to procedura ta nadaje status _Finished_. W przeciwnym wypadku procedura nadaje każdemu projektowi, którego termin realizacji nie minął status __Active__.
 
 ### Działanie projektu:
 
