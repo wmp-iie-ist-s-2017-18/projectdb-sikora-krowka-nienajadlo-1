@@ -12,21 +12,21 @@
 
 - Funkcji __checkState__, która weryfikuje czy termin zakończenia projektu już minął. Funkcja:
 
-##### BEGIN
-##### RETURN IF(DATE(now())>(SELECT finish FROM project Where project.project_ID = ID_Project), "Closed", "Active");
-##### END
+######### BEGIN
+######### RETURN IF(DATE(now())>(SELECT finish FROM project Where project.project_ID = ID_Project), "Closed", "Active");
+######### END
 
 - Procedury __updateStates__, która nadaje projektowi nowy status - zależnie od tego czy termin minął czy nie. Jeżeli upłynie termin zakończenia projektu, to procedura ta nadaje status _Finished_. W przeciwnym wypadku procedura nadaje każdemu projektowi, którego termin realizacji nie minął status __Active__. Procedure: 
 
-##### BEGIN
-##### DECLARE x int DEFAULT 0;
-##### DECLARE y int DEFAULT 0;
-##### SET x = (SELECT MAX(project.project_ID) From project);
-##### WHILE x >= y DO
-##### UPDATE `project` SET `state`=stateCheck(y) WHERE project.project_ID =y;
-##### SET y = y + 1;
-##### END WHILE;
-##### END
+######### BEGIN
+######### DECLARE x int DEFAULT 0;
+######### DECLARE y int DEFAULT 0;
+######### SET x = (SELECT MAX(project.project_ID) From project);
+######### WHILE x >= y DO
+######### UPDATE `project` SET `state`=stateCheck(y) WHERE project.project_ID =y;
+######### SET y = y + 1;
+######### END WHILE;
+######### END
 
 ### Działanie projektu:
 
