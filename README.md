@@ -60,6 +60,7 @@
 - **Bootstrap Framework**,
 - **JavaScript**,
 - **JQuery Framework**,
+- **Chart.js Framework**,
 - **PHP**,
 - **PDO Framework**,
 - **MySQL**,
